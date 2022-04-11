@@ -1,48 +1,34 @@
 <template>
   <div id="jujube">
-    <!-- <header>
-      <div class="cover">
-        <img src="./assets/image/logo.png" alt="">
-      </div>
-      <input type="checkbox" class="navbar-toggle" id="navbar-toggle" />
-      <nav class="nav">
-        <ul class="nav-list">
-          <li class="nav-item">
-            <router-link to="/">首頁</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link to="/news">最新消息</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link to="/jujubes">商品資訊</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link to="/contact">聯絡我們</router-link>
-          </li>
-        </ul>
-      </nav>
-      <label class="navbar-toggle-label" for="navbar-toggle">
-        <span class="hamburger">三</span>
-      </label>
-    </header> -->
-    <main>
-      <router-view/>
-    </main>
-    <footer>
-    </footer>
-  </div>
+  <header>
+    <div class="cover">
+      <img src="./assets/image/logo.png" alt="">
+    </div>
+    <input type="checkbox" class="navbar-toggle" id="navbar-toggle" />
+    <nav class="nav">
+      <ul class="nav-list">
+        <li class="nav-item">
+          <router-link to="/">首頁</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link to="/news">最新消息</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link to="/jujubes">商品資訊</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link to="/contact">聯絡我們</router-link>
+        </li>
+      </ul>
+    </nav>
+    <label class="navbar-toggle-label" for="navbar-toggle">
+      <!--增加 span 標籤，並用中文字「三」暫時 demo 效果-->
+      <span class="hamburger">三</span>
+    </label>
+  </header>
 </template>
 
-
-<script>
-import 'bootstrap'
-import 'bootstrap/dist/css/bootstrap.min.css'
-export default {
-  name: 'App'
-}
-</script>
-
-<style lang="scss">
+<style lang="scss" scoped>
   @import "assets/style/reset.css";
   /*Main Header*/
   header {
@@ -105,4 +91,3 @@ export default {
     padding-top: 60px;
   }
 </style>
-
