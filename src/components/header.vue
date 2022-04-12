@@ -1,8 +1,7 @@
 <template>
-  <div id="jujube">
-  <header>
+  <header class="mobile-header">
     <div class="cover">
-      <img src="./assets/image/logo.png" alt="">
+      <img src="../assets/image/logo.png" alt="">
     </div>
     <input type="checkbox" class="navbar-toggle" id="navbar-toggle" />
     <nav class="nav">
@@ -29,7 +28,6 @@
 </template>
 
 <style lang="scss" scoped>
-  @import "assets/style/reset.css";
   /*Main Header*/
   header {
     width: 100%;
