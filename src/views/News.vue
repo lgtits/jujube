@@ -1,17 +1,20 @@
 <template>
   <div class="about">
     <Header />
-    <h1>This is an about page</h1>
+    <ComputerHeader />
+    <h1>This is a news page</h1>
 
   </div>
 </template>
 
 <script>
 import Header from '../components/header.vue'
+import ComputerHeader from "../components/computerHeader.vue";
 
 export default {
   components: {
     Header,
+    ComputerHeader
   },
 }
 
