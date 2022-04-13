@@ -4,19 +4,21 @@
     <ComputerHeader />
     <main class="products">
       <Sidebar />
-      <h1>
-        棗子
-      </h1>
-      <div class="jujube-box">
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
+      <div class="main-content">
+        <h1>
+          棗子
+        </h1>
+        <div class="jujube-box">
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+        </div>
+        <h1 class="other-product">
+          棗子糖
+        </h1>
         <ProductCard />
       </div>
-      <h1 class="other-product">
-        棗子糖
-      </h1>
-      <ProductCard />
     </main>
     <Footer />
   </div>
@@ -70,11 +72,14 @@ export default {
 
 <style lang="scss" >
 .jujubes{
-  .jujube-box{
-    display: flex;
-    margin: 0 auto;
-    justify-content: space-around;
-    flex-flow: wrap;
+  .main-content{
+    padding: 20px;
+    .jujube-box{
+      display: flex;
+      margin: 0 auto;
+      justify-content: space-around;
+      flex-flow: wrap;
+    }
   }
 }
 
