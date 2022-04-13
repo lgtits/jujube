@@ -3,8 +3,12 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import News from '../views/News.vue'
 import Jujubes from '../views/Jujubes.vue'
+import Introduction from '../views/Introduction.vue'
+import Preserved from '../views/Preserved.vue'
+import Shipping from '../views/Shipping.vue'
 import Contact from '../views/Contact.vue'
 import NotFound from '../views/NotFound.vue'
+
 
 Vue.use(VueRouter)
 
@@ -31,6 +35,21 @@ const routes = [
     path: '/jujubes',
     name: 'Jujubes',
     component: Jujubes
+  },
+  {
+    path: '/jujubes/introduction',
+    name: 'Introduction',
+    component: Introduction
+  },
+  {
+    path: '/jujubes/preserved',
+    name: 'Preserved',
+    component: Preserved
+  },
+    {
+    path: '/jujubes/shipping',
+    name: 'Shipping',
+    component: Shipping
   },
   {
     path: '/contact',
