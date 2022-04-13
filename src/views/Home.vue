@@ -14,18 +14,21 @@
       也期望能持續散播這份幸福甘甜，讓更多人品嚐到覓棗晨的美好。
       想欲呷棗仔，就來找陳家！
     </div>
+    <Footer />
   </div>
 </template>
 
 <script>
 import Header from "../components/header.vue";
 import ComputerHeader from "../components/computerHeader.vue";
+import Footer from '../components/footer.vue'
 
 export default {
   name: "Home",
   components: {
     Header,
     ComputerHeader,
+    Footer
   },
 };
 </script>
