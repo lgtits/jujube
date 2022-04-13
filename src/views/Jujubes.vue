@@ -1,21 +1,23 @@
 <template>
-  <div class="jujubs">
+  <div class="jujubes">
     <Header />
     <ComputerHeader />
-    <h1>This is a product page</h1>
-    <h1>
-      棗子
-    </h1>
-    <div class="jujube-box">
+    <main class="products">
+      <Sidebar />
+      <h1>
+        棗子
+      </h1>
+      <div class="jujube-box">
+        <ProductCard />
+        <ProductCard />
+        <ProductCard />
+        <ProductCard />
+      </div>
+      <h1 class="other-product">
+        棗子糖
+      </h1>
       <ProductCard />
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
-    </div>
-    <h1 class="other-product">
-      棗子糖
-    </h1>
-    <ProductCard />
+    </main>
     <Footer />
   </div>
 </template>
@@ -23,6 +25,7 @@
 <script>
 import Header from '../components/header.vue'
 import ComputerHeader from "../components/computerHeader.vue";
+import Sidebar from '../components/sidebar.vue'
 import Footer from '../components/footer.vue'
 import ProductCard from "../components/productCard.vue";
 
@@ -49,6 +52,7 @@ export default {
   components: {
     Header,
     ComputerHeader,
+    Sidebar,
     ProductCard,
     Footer
   },
@@ -64,11 +68,20 @@ export default {
 
 </script>
 
-<style lang="scss">
+<style lang="scss" >
+.jujubes{
   .jujube-box{
     display: flex;
     margin: 0 auto;
     justify-content: space-around;
     flex-flow: wrap;
   }
+}
+
+  @media screen and (max-width: 700px) {
+    .products{
+      padding-top: 80px;
+    }
+  }
+
 </style>

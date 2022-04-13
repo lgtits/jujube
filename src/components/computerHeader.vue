@@ -36,12 +36,17 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
+  margin: 20px;
   .nav-item {
     width: 20%;
-    height: 40px;
     text-align: center;
-    line-height: 40px;
-    border: 1px red solid;
+    background-color: #FFBB32;
+    padding: 5px;
+    border-radius: 5px;
+    a{
+      color: #484246;
+      font-weight: 600;
+    }
   }
 }
 </style>

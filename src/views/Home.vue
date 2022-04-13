@@ -34,16 +34,6 @@ export default {
 </script>
 
 <style lang="scss">
-  @media screen and (min-width: 700px) {
-    .mobile-header {
-      display: none;
-    }
-  }
-  
-  @media screen and (max-width: 700px){
-    .computer-header{
-      display: none;
-    }  
-  }
+
 </style>
 

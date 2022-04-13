@@ -22,6 +22,16 @@ export default {
   .jujube{
     margin: 0 auto;
   }
-
+  @media screen and (min-width: 700px) {
+    .mobile-header {
+      display: none;
+    }
+  }
+  
+  @media screen and (max-width: 700px){
+    .computer-header{
+      display: none;
+    }  
+  }
 </style>
 
