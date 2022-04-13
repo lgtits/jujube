@@ -1,14 +1,27 @@
 # jujube
 
+
+# Project download
+```
+git clone https://github.com/lgtits/jujube.git
+```
+
+## Project edit
+```
+code .
+```
+
 ## Project setup
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### check the website
 ```
-npm run serve
+checkout the website on browser at http://localhost:8080/
 ```
+
+
 
 ### Compiles and minifies for production
 ```
@@ -20,5 +33,4 @@ npm run build
 npm run lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+
