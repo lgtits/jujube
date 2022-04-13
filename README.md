@@ -1,5 +1,9 @@
 # jujube
 
+wireframe:
+
+https://docs.google.com/drawings/d/1vea-u5emjIo5az0KfgGFIqJVSWCpyPsJ5xqh99IOvqw/edit?usp=sharing
+https://docs.google.com/drawings/d/1LeF9y_VrAgKKMWfpAWUcJonXcDQHqJmwEYvgO8erfow/edit?usp=sharing
 
 # Project download
 ```
