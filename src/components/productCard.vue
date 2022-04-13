@@ -10,46 +10,44 @@
 </template>
 
 <script>
-
 export default {
   props: {
     products: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
-    return{
-
-    }
+    return {};
   },
-}
+};
 </script>
 
 
 <style lang="scss" scoped>
-.product-card{
+.product-card {
   width: 250px;
   height: 350px;
   text-align: center;
   display: flex;
   flex-direction: column;
   border: 1px solid white;
+  border-radius: 5px;
 
-  &:hover{
-    border: 1px solid #99E64D;
+  &:hover {
+    border: 1px solid #a0cda6;
   }
-  .product-image{
+  .product-image {
     width: 200px;
     height: 200px;
     margin: 25px auto;
-    img{
+    img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
   }
-  p{
+  p {
     margin-bottom: 10px;
   }
 }

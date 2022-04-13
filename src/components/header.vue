@@ -85,7 +85,4 @@
       align-items: center;
     }
   }
-  main{
-    padding-top: 60px;
-  }
 </style>
