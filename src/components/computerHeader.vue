@@ -1,7 +1,7 @@
 <template>
   <header class="computer-header">
     <div class="cover">
-      <img src="../assets/image/cover2.jpg" alt="">
+      <img src="../assets/image/cover2.jpg" alt="" />
     </div>
     <nav class="nav">
       <ul class="nav-list">
@@ -23,19 +23,25 @@
 </template>
 
 <style lang="scss" scoped>
-  .cover{
-    height: 300px;
+.cover {
+  height: 300px;
+  width: 100%;
+  img {
+    height: 100%;
     width: 100%;
-    img{
-      height: 100%;
-      width: 100%;
-      object-fit:cover;
-    }
+    object-fit: cover;
   }
-  .nav-list{
-    display: flex;
-    .nav-item{
-      width: 20%;
-    }
+}
+.nav-list {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  .nav-item {
+    width: 20%;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    border: 1px red solid;
   }
+}
 </style>
