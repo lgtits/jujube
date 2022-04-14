@@ -17,6 +17,7 @@ git clone https://github.com/lgtits/jujube.git
 
 ## Project edit
 ```
+cd jujube
 code .
 ```
 
@@ -25,9 +26,10 @@ code .
 npm install
 ```
 
+
 ### check the website
 ```
-checkout the website on browser at http://localhost:8080/
+npm run serve
 ```
 
 
