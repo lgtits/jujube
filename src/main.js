@@ -11,12 +11,13 @@ import { faInstagram } from '@fortawesome/free-brands-svg-icons'
 import { faLine } from '@fortawesome/free-brands-svg-icons'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
+import { faPhone } from '@fortawesome/free-solid-svg-icons'
 
 /* import font awesome icon component */
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 /* add icons to the library */
-library.add(faLine, faFacebook, faInstagram, faShoppingCart, faBars)
+library.add(faLine, faFacebook, faInstagram, faShoppingCart, faBars, faPhone)
 
 
 /* add font awesome icon component */
@@ -27,7 +28,7 @@ import VueFbCustomerChat from 'vue-fb-customer-chat'
 
 Vue.use(VueFbCustomerChat, {
   page_id: "206304263433214", //  change 'null' to your Facebook Page ID,
-  theme_color: '#333333', // theme color in HEX
+  theme_color: '#A0CDA6', // theme color in HEX
   locale: 'zh_TW', // default 'en_US'
 })
 
