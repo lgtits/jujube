@@ -29,6 +29,7 @@
 </template>
 
 <style lang="scss" scoped>
+
   .footer{
     text-align: center;
     padding: 20px;
@@ -39,11 +40,13 @@
         margin-right: 15px;
         width: 16px;
         a{
-          color: black;
+          color: $main-color;
+          
         }
       }
       p{
         margin: 10px auto;
+        color: $main-color;
       }
     }
   }
