@@ -21,8 +21,9 @@
       </ul>
     </nav>
     <label class="navbar-toggle-label" for="navbar-toggle">
-      <!--增加 span 標籤，並用中文字「三」暫時 demo 效果-->
-      <span class="hamburger">三</span>
+      <span class="hamburger">
+        <font-awesome-icon icon="fa-solid fa-bars" size="xl"/>
+      </span>
     </label>
   </header>
 </template>
@@ -83,6 +84,9 @@
       right: 7.5%;
       display: flex;
       align-items: center;
+      .hamburger{
+        cursor: pointer;
+      }
     }
   }
 </style>
