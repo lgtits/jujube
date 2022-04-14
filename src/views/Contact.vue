@@ -46,7 +46,7 @@ export default {
 
 <style lang="scss">
   .contact-info{
-    padding-top: 60px;
+    padding-top: 80px;
     margin-bottom: 20px;
     .info{
       width: 80%;
