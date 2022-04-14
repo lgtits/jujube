@@ -2,47 +2,50 @@
   <div class="news">
     <Header />
     <ComputerHeader />
-    <h1>This is a news page</h1>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/1CqVgJDXYk4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<div id="gallerywrapper">
-<div id="gallery">
-<div id="pic1">
-<img src="https://unsplash.it/g/500/350?random" height="350" width="500" alt="Image 1">
-<a class="previous" href="#pic5">&lt;</a>
-<a class="next" href="#pic2">&gt;</a>
-<h3>Image 1</h3>
-<p>Text of image 1.</p>
-</div>
-<div id="pic2">
-<img src="https://unsplash.it/g/500/350" height="350" width="500" alt="Image 2">
-<a class="previous" href="#pic1">&lt;</a>
-<a class="next" href="#pic3">&gt;</a>
-<h3>Image 2</h3>
-<p>Text of image 2.</p>
-</div>
-<div id="pic3">
-<img src="https://unsplash.it/g/500/350?random" height="350" width="500" alt="Image 3">
-<a class="previous" href="#pic2">&lt;</a>
-<a class="next" href="#pic4">&gt;</a>
-<h3>Image 3</h3>
-<p>Text of image 3.</p>
-</div>
-<div id="pic4">
-<img src="https://unsplash.it/g/500/350" height="350" width="500" alt="Image 4">
-<a class="previous" href="#pic3">&lt;</a>
-<a class="next" href="#pic5">&gt;</a>
-<h3>Image 4</h3>
-<p>Text of image 4.</p>
-</div>
-<div id="pic5">
-<img src="https://unsplash.it/g/500/350?random" height="350" width="500" alt="Image 5">
-<a class="previous" href="#pic4">&lt;</a>
-<a class="next" href="#pic1">&gt;</a>
-<h3>Image 5</h3>
-<p>Text of image 5.</p>
-</div>
-</div>
-</div>
+    <div class="youtube-video">
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/1CqVgJDXYk4" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <!-- 圖庫 -->
+      <div id="gallerywrapper">
+      <div id="gallery">
+      <div id="pic1">
+      <img src="../assets/image/LINE_ALBUM_覓棗晨_220414_0.jpg" height="350" width="500" alt="Image 1">
+      <a class="previous" href="#pic5">&lt;</a>
+      <a class="next" href="#pic2">&gt;</a>
+      <h3>蜜棗 1</h3>
+      <p>蜜棗</p>
+      </div>
+      <div id="pic2">
+      <img src="../assets/image/LINE_ALBUM_覓棗晨_220414_2.jpg" height="350" width="500" alt="Image 2">
+      <a class="previous" href="#pic1">&lt;</a>
+      <a class="next" href="#pic3">&gt;</a>
+      <h3>蜜棗 2</h3>
+      <p>蜜棗 2.</p>
+      </div>
+      <div id="pic3">
+      <img src="../assets/image/LINE_ALBUM_覓棗晨_220414_4.jpg" height="350" width="500" alt="Image 3">
+      <a class="previous" href="#pic2">&lt;</a>
+      <a class="next" href="#pic4">&gt;</a>
+      <h3>蜜棗 3</h3>
+      <p>蜜棗 3.</p>
+      </div>
+      <div id="pic4">
+      <img src="../assets/image/LINE_ALBUM_覓棗晨_220414_5.jpg" height="350" width="500" alt="Image 4">
+      <a class="previous" href="#pic3">&lt;</a>
+      <a class="next" href="#pic5">&gt;</a>
+      <h3>蜜棗 4</h3>
+      <p>蜜棗 4.</p>
+      </div>
+      <div id="pic5">
+      <img src="../assets/image/LINE_ALBUM_覓棗晨_220414_7.jpg" height="350" width="500" alt="Image 5">
+      <a class="previous" href="#pic4">&lt;</a>
+      <a class="next" href="#pic1">&gt;</a>
+      <h3>蜜棗 5</h3>
+      <p>蜜棗 5.</p>
+      </div>
+      </div>
+      </div>
+    <!-- 圖庫 -->
     <Footer />
   </div>
 </template>
@@ -63,6 +66,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .youtube-video{
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px;
+    height: 0;
+    overflow: hidden;
+    width: 80%;
+    margin: 40px auto;
+     iframe, o object, embed {
+      position: absolute;
+      top: 0;left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+
  #gallerywrapper {
      width:640px;
      height:450px;
