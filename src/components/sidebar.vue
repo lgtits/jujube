@@ -2,6 +2,9 @@
   <nav class="product-nav">
     <ul class="product-list">
       <li class="product-category">
+        <router-link to="/jujubes">全部商品</router-link>
+      </li>
+      <li class="product-category">
         <router-link to="/jujubes/introduction">蜜棗介紹</router-link>
       </li>
       <li class="product-category">
@@ -24,13 +27,11 @@
         margin: 0 15px;
         text-align: center;
         color: white;
-        background-color: #A0CDA6 ;
-        // #FFBB32 
-        // #484246 
+        background-color: $main-green ;
         padding: 5px;
         border-radius: 5px;
         a{
-          color: #484246;
+          color: $main-color;
           font-weight: 600;
         }
       }

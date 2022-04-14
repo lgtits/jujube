@@ -74,6 +74,12 @@
           width: 80%;
           margin: 1.4rem auto;
           opacity: 0;
+          a{
+            color: $main-color;
+            &:hover{
+              color: $main-yellow;
+            }
+          }
         }
       }
     }

@@ -19,6 +19,9 @@ export default {
 
 <style lang="scss">
   @import "assets/style/reset.css";
+  @import "assets/style/main.scss";
+
+
   .jujube{
     margin: 0 auto;
   }
