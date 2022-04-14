@@ -22,6 +22,15 @@ library.add(faLine, faFacebook, faInstagram, faShoppingCart, faBars)
 /* add font awesome icon component */
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
+// messenger
+import VueFbCustomerChat from 'vue-fb-customer-chat'
+
+Vue.use(VueFbCustomerChat, {
+  page_id: "206304263433214", //  change 'null' to your Facebook Page ID,
+  theme_color: '#333333', // theme color in HEX
+  locale: 'zh_TW', // default 'en_US'
+})
+
 
 Vue.config.productionTip = false
 
