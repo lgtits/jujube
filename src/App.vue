@@ -1,5 +1,5 @@
 <template>
-  <div id="jujube">
+  <div id="jujube" class="container80">
     <main>
       <router-view/>
     </main>
@@ -28,6 +28,10 @@ export default {
   @media screen and (min-width: 700px) {
     .mobile-header {
       display: none;
+    }
+    .container80 {
+      width: 85%;
+      margin: 0 auto 3rem auto;
     }
   }
   
