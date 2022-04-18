@@ -20,6 +20,7 @@
           <P class="info-time">LINE 客服時間：星期一～星期五，09:00～18:00</P>
         </div>
       </div>
+      <ContactUs />
       <!-- fb messenger -->
       <div class="messenger">
         <div id="fb-root"></div>
@@ -33,13 +34,14 @@
 import Header from '../components/header.vue'
 import ComputerHeader from "../components/computerHeader.vue";
 import Footer from '../components/footer.vue'
+import ContactUs from '../components/contactUs.vue'
 
 export default {
   components: {
     Header,
     ComputerHeader,
-    Footer
-
+    Footer,
+    ContactUs
   },
 }
 </script>
@@ -54,6 +56,8 @@ export default {
       .content {
         padding: 16px;
         border: 1px solid rgb(179, 178, 178);
+        border-radius: 5px;
+        margin-bottom: 16px;
         .info-title{
         font-size: 20px;
         margin-bottom: 16px;
@@ -62,6 +66,13 @@ export default {
           color: $main-green;
           margin-bottom: 16px;
         }
+      }
+    }
+  }
+  @media screen and (min-width: 700px) {
+    .contact-info{
+      .info{
+        width: 60%;
       }
     }
   }
