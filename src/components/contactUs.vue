@@ -59,7 +59,6 @@ export default {
             this.isPending = false
         }, (error) => {
             console.log('FAILED...', error.text);
-            // alert error message
             alert("error")
             this.isPending = false
         });

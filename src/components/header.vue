@@ -20,6 +20,14 @@
         </li>
       </ul>
     </nav>
+    <div class="cart">
+      <router-link to="/cart">
+        <font-awesome-icon icon="fa-solid fa-cart-shopping" size="xl"/>
+        <div class="favorite_count">
+          <span>{{quantity}}</span>
+        </div>
+      </router-link>
+    </div>
     <label class="navbar-toggle-label" for="navbar-toggle">
       <span class="hamburger">
         <font-awesome-icon icon="fa-solid fa-bars" size="xl"/>
@@ -27,6 +35,18 @@
     </label>
   </header>
 </template>
+
+<script>
+
+export default {
+  data() {
+    return{
+      quantity:"25"
+    }
+  },
+}
+</script>
+
 
 <style lang="scss" scoped>
   /*Main Header*/
@@ -92,6 +112,35 @@
       align-items: center;
       .hamburger{
         cursor: pointer;
+      }
+    }
+    .cart{
+      height: 60px;
+      position: absolute;
+      top: -4px;
+      bottom: 0;
+      right: 20%;
+      line-height: 60px;
+      a{
+        color: $main-color;
+      }
+      .favorite_count{
+        position: absolute;
+        top: 10px;
+        bottom: 0;
+        right: -25%;
+        background-color: rgb(255, 145, 145);
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;
+        span{
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: -20px;
+          right: 0;
+          font-size: 14px;
+        }
       }
     }
   }

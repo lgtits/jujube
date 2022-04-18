@@ -8,7 +8,7 @@ import Preserved from '../views/Preserved.vue'
 import Shipping from '../views/Shipping.vue'
 import Contact from '../views/Contact.vue'
 import NotFound from '../views/NotFound.vue'
-
+import Cart from '../views/Cart.vue'
 
 Vue.use(VueRouter)
 
@@ -55,6 +55,11 @@ const routes = [
     path: '/contact',
     name: 'Contact',
     component: Contact
+  },
+  {
+    path: '/cart',
+    name: 'Cart',
+    component: Cart
   },
   {
     path: '*',
