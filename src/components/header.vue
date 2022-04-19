@@ -140,6 +140,7 @@ export default {
           top: -20px;
           right: 0;
           font-size: 14px;
+          color: white;
         }
       }
     }
