@@ -26,7 +26,10 @@
       <textarea name="message" rows="5" cols="100" v-model="message" required></textarea>
     </div>
     <button type="submit" value="Send" v-show="isPending === false" >送出</button>
-    <button v-show="isPending === true" disabled>...送出中</button>
+    <button v-show="isPending === true" disabled>
+      傳送中
+      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+    </button>
   </form>
 </template>
 
@@ -80,6 +83,8 @@ export default {
     .row{
       display: flex;
       flex-direction: column;
+      width: 100%;
+      margin: 0 auto;
     }
     input, textarea{
       width: 100%;
