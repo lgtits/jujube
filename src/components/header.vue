@@ -33,6 +33,11 @@
         <font-awesome-icon icon="fa-solid fa-bars" size="xl"/>
       </span>
     </label>
+    <label class="navbar-toggle-label-close" for="navbar-toggle">
+      <span class="x">
+        <font-awesome-icon icon="fa-solid fa-xmark"  size="2xl"/>
+      </span>
+    </label>
   </header>
 </template>
 
@@ -76,6 +81,12 @@ export default {
     .navbar-toggle:checked ~ .nav {
         transform: scale(1, 1);
     }
+
+    // toggle fontawesome figure
+    .navbar-toggle:checked ~ .navbar-toggle-label {
+       display: none;  
+    }
+
     .navbar-toggle:checked ~ .nav .nav-item {
       /*開啟時透明度為1*/
       opacity: 1;
@@ -113,6 +124,19 @@ export default {
       .hamburger{
         cursor: pointer;
       }
+    }
+    .navbar-toggle-label-close {
+      position: absolute;
+      top: 10px;
+      bottom: 0;
+      right: 7.5%;
+      display: none;
+      .x{
+        cursor: pointer;
+      }
+    }
+    .navbar-toggle:checked ~ .navbar-toggle-label-close {
+       display: block;  
     }
     .cart{
       height: 60px;
