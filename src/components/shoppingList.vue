@@ -60,6 +60,9 @@ export default {
 
 
 <style lang="scss" scoped>
+  // *{
+  //   border: 0.1px solid red;
+  // }
   .quantity::-webkit-outer-spin-button,
   .quantity::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -70,8 +73,13 @@ export default {
     align-items: center;
     justify-content: space-around;
     border: 1px solid $main-gray;
+    height: 100px;
     .product-select-panel{
       display: flex;
+      align-items: center;
+      justify-content: space-around;
+      width: 25%;
+      height: 100%;
       .product-checkbox{
         height: 20px;
         width: 20px;
@@ -94,17 +102,35 @@ export default {
       }
     }
     .product-description{
+      width: 45%;
+      text-align: center;
+      .product-name-wrapper{
+        width: 100%;
+        span{
+          display: block;
+        }
+      }
       .specification-wrapper{
-          text-align: center;
-          
           .specification{
             display: block;
           }
       }
+      .price-wrapper{
+        width: 100%;
+        span{
+          display: block;
+        }
+      }
     }
     .control-panel{
+      width: 30%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
       .quantity-control-panel{
-        width: 100px;
+        width: 90%;
         button{
           width: 25%;
         }
@@ -112,6 +138,9 @@ export default {
           width: 50%;
           text-align: center;
         }
+      }
+      .delete{
+        
       }
       .gross-price-wrapper{
         display: none;

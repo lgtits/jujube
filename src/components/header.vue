@@ -1,7 +1,9 @@
 <template>
   <header class="mobile-header">
     <div class="cover">
-      <img src="../assets/image/logo.png" alt="">
+      <router-link to="/">
+        <img src="../assets/image/logo.png" alt="">
+      </router-link>
     </div>
     <input type="checkbox" class="navbar-toggle" id="navbar-toggle" />
     <nav class="nav">
@@ -22,7 +24,7 @@
     </nav>
     <div class="cart">
       <router-link to="/cart">
-        <font-awesome-icon icon="fa-solid fa-cart-shopping" size="xl"/>
+        <font-awesome-icon icon="fa-solid fa-cart-shopping" size="xl" />
         <div class="favorite_count">
           <span>{{quantity}}</span>
         </div>
