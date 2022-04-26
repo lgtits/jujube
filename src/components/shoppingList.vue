@@ -133,9 +133,10 @@ export default {
         width: 90%;
         button{
           width: 25%;
+          max-width: 50px;
         }
         .quantity{
-          width: 50%;
+          width: 40%;
           text-align: center;
         }
       }
@@ -152,9 +153,18 @@ export default {
     .product{
       .product-description{
         display: flex;
+        align-items: center;
+        width: 60%;
+        .product-name-wrapper, .price-wrapper{
+          width: 25%;
+        }
+        .specification-wrapper{
+          width: 50%;
+        }
       }
       .control-panel{
         display: flex;
+        justify-content: center;
         .gross-price-wrapper{
           display: block;
         }
