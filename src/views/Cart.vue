@@ -7,6 +7,7 @@
         購物車
       </div>
       <ShoppingList />
+      <TotalAmount />
     </main>
     <Footer />
   </div>
@@ -16,6 +17,7 @@
 import Header from "../components/header.vue";
 import ComputerHeader from "../components/computerHeader.vue";
 import ShoppingList from '../components/shoppingList.vue';
+import TotalAmount from '../components/totalAmount.vue';
 import Footer from '../components/footer.vue'
 
 export default {
@@ -24,7 +26,8 @@ export default {
     Header,
     ComputerHeader,
     Footer,
-    ShoppingList
+    ShoppingList,
+    TotalAmount
   },
 };
 </script>

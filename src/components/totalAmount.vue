@@ -1,0 +1,10 @@
+<template>
+  <div>
+    <div>
+      總金額
+    </div>
+    <div>
+      <button>買單</button>
+    </div>
+  </div>
+</template>
