@@ -31,7 +31,7 @@ import ProductCard from "../components/productCard.vue";
 const productData = {
   'jujubes': [
     {
-      'id': 1,
+      'id': 'jujube45',
       'name': '雪麗棗 4.5A',
       'image':'https://i.imgur.com/gpfAb8E.jpg',
       'specification':'超大大(每顆平均4.5兩)',
@@ -40,7 +40,7 @@ const productData = {
       'quantity': 0
     },
     {
-      'id': 2,
+      'id': 'jujube40',
       'name': '雪麗棗 4A',
       'image':'https://i.imgur.com/gpfAb8E.jpg',
       'specification':'超大(每顆平均4.0-4.4兩)',
@@ -49,7 +49,7 @@ const productData = {
       'quantity': 0
     },
     {
-      'id': 3,
+      'id': 'jujube35',
       'name': '雪麗棗 3.5A',
       'image':'https://i.imgur.com/gpfAb8E.jpg',
       'specification':'頂級(每顆平均3.5-3.9兩)',
@@ -58,7 +58,7 @@ const productData = {
       'quantity': 0
     },
     {
-       'id': 4,
+       'id': 'jujube30',
       'name': '雪麗棗 3A',
       'image':'https://i.imgur.com/gpfAb8E.jpg',
       'specification':'特級(每顆平均3.0-3.4兩)',
@@ -67,7 +67,7 @@ const productData = {
       'quantity': 0
     },
     {
-      'id': 5,
+      'id': 'jujubeCandy',
       'name': '柴燒蜜棗糖',
       'image':'https://i.imgur.com/gLE8CD3.jpg',
       'specification':'頂級蜜棗製作',

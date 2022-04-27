@@ -6,7 +6,7 @@
       <Sidebar />
       <div class="content">
         <h1>
-          棗子糖介紹
+          蜜棗糖介紹
         </h1>
       </div>
     </main>

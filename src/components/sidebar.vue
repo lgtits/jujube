@@ -8,7 +8,7 @@
         <router-link to="/jujubes/introduction">蜜棗介紹</router-link>
       </li>
       <li class="product-category">
-        <router-link to="/jujubes/preserved">棗子糖介紹</router-link>
+        <router-link to="/jujubes/preserved">蜜棗糖介紹</router-link>
       </li>
       <li class="product-category">
         <router-link to="/jujubes/shipping">包裝出貨流程</router-link>

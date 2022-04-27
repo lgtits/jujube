@@ -48,9 +48,26 @@
 export default {
   data() {
     return{
-      quantity:"25"
+      quantity: ''
     }
   },
+  methods:{
+    getCartNumber(){
+      if(!localStorage.getItem('jujube45')) {
+        this.quantity = 0
+      } else {
+        this.quantity = localStorage.getItem('jujube45')
+      }   
+    }
+  },
+  created(){
+    this.getCartNumber()
+  },
+  watch:{
+    quantity(){
+      console.log('a')
+    }
+  }
 }
 </script>
 
