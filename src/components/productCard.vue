@@ -12,9 +12,9 @@
       <p class="product-price">{{jujube.price}} 元</p>
     </div>
     <div class="control-panel">
-      <button class="quantity-control">+</button>
+      <button class="quantity-control" @click="addQuantity">+</button>
         <input type="number" min="0" v-model="jujube.quantity" class="quantity">
-      <button class="quantity-control">-</button>
+      <button class="quantity-control" @click="minusQuantity">-</button>
       <button class="add-cart" @click="addCart()">加入購物車</button>
     </div>
   </div>
@@ -35,7 +35,20 @@ export default {
   },
   methods:{
     addCart(){
-      alert('成功加入購物車!')
+      if(this.jujube.quantity ===0){
+        return
+      }
+      alert(` ${this.jujube.name} ${this.jujube.quantity}箱，成功加入購物車!`)
+    },
+    addQuantity(){
+      this.jujube.quantity ++
+    },
+    minusQuantity(){
+      if(this.jujube.quantity > 0){
+        this.jujube.quantity -- 
+      } else {
+        this.jujube.quantity = 0
+      }
     }
   }
 };
