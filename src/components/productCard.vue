@@ -12,9 +12,9 @@
       <p class="product-price">{{jujube.price}} 元</p>
     </div>
     <div class="control-panel">
-      <button>+</button>
+      <button class="quantity-control">+</button>
         <input type="number" min="0" v-model="jujube.quantity" class="quantity">
-      <button>-</button>
+      <button class="quantity-control">-</button>
       <button class="add-cart" @click="addCart()">加入購物車</button>
     </div>
   </div>
@@ -43,9 +43,14 @@ export default {
 
 
 <style lang="scss" scoped>
+  .quantity::-webkit-outer-spin-button,
+  .quantity::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 .product-card {
   width: 250px;
-  height: 400px;
+  height: 430px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -69,11 +74,38 @@ export default {
   }
   .control-panel{
     width: 100%;
-    .button{
-      width: 25%;
+    .quantity-control{
+      width: 10%;
+      background-color: transparent;
+      outline: none;
+      border: 1px solid black;
+      height: 30px;
+            padding: none;
     }
     .quantity{
-      width: 25%;
+      width: 20%;
+      background-color: transparent;
+      text-align: center;
+      height: 30px;
+      border:none;
+      border-top: 1px solid black;
+      border-bottom: 1px solid black;
+      outline: none;
+      padding: none;
+    }
+    .add-cart{
+      color: $main-green;
+      font-weight: 800;
+      line-height: 20px;
+      background-color: white;
+      border: 4px solid $main-green;
+      border-radius: 10px;
+      outline: none;
+      margin-left: 10px;
+      &:hover{
+        color: $main-yellow;
+        border: 4px solid $main-yellow;
+      }
     }
   }
 } 
