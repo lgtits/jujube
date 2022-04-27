@@ -24,12 +24,12 @@
         </div>
         <div class="control-panel">
           <div class="quantity-control-panel">
-            <button class="quantity-down">
-              -
+            <button class="quantity-up" @click="quantityControl">
+              +
             </button>
             <input type="number" min="0" v-model="quantity" class="quantity">
-            <button class="quantity-up">
-              +
+            <button class="quantity-down" @click="quantityControl">
+              -
             </button>
           </div>
           <div class="gross-price-wrapper">
@@ -49,11 +49,19 @@
 export default {
   data() {
     return{
-      quantity:"1"
+      quantity: 0
     }   
   },
   methods:{
-
+     quantityControl(e){
+       if(e.target.className === 'quantity-up'){
+         console.log('quantity up')
+         this.quantity ++
+       } else if(e.target.className === 'quantity-down'){
+         console.log('quantity down')
+         this.quantity > 0 ? this.quantity -- : this.quantity = 0
+       }
+     }
   }
 }
 </script>

@@ -16,6 +16,7 @@ body {
   font-size: 1rem;
   line-height: 1.4;
   margin: 0;
+  
 }
 h1,
 h2,
@@ -37,3 +38,4 @@ li {
 a {
   text-decoration: none; /* 拿掉底線 */
 }
+
