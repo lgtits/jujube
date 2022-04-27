@@ -58,6 +58,7 @@ export default {
         border: 1px solid rgb(179, 178, 178);
         border-radius: 5px;
         margin-bottom: 16px;
+        color: $main-color;
         .info-title{
         font-size: 20px;
         margin-bottom: 16px;

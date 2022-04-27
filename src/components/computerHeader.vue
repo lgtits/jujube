@@ -97,9 +97,16 @@ export default {
   .nav-item {
     width: 20%;
     text-align: center;
-    background-color: #FFBB32;
-    padding: 5px;
-    border-radius: 5px;
+    font-size: 18px;
+    border: 5px solid $main-yellow;
+    padding: 2px;
+    border-radius: 25px;
+    &:hover{
+      background-color: #FFBB32;
+      a{
+        text-decoration:none;
+      }
+    }
     a{
       color: #484246;
       font-weight: 600;

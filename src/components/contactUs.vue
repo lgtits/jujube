@@ -88,7 +88,7 @@ export default {
     }
     input, textarea{
       width: 100%;
-      border:  1px solid black;
+      border:  1px solid $main-gray;
       border-radius: 5px;
       padding: 5px;
       &:focus, &:hover{
@@ -103,14 +103,17 @@ export default {
       width: 30%;
       margin: 20px auto;
       display: block;
-      background-color: $main-green;
+      background-color: white;
       border-radius: 50px;
-      border:  1px solid $main-green;
+      border:  5px solid $main-green;
+      color: $main-green;
+      font-weight: 800;
+      font-size: 20px;
       line-height: 16px;
       padding: 10px;
       &:hover{
-        background-color: $main-yellow;
-        border:  1px solid $main-yellow;
+        border:  5px solid $main-yellow;
+        color: $main-yellow;
       }
     }
   }
