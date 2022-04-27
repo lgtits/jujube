@@ -34,8 +34,20 @@
 export default {
   data() {
     return{
-      quantity: 25
+      quantity: 0
     }
+  },
+  methods:{
+    getCartNumber(){
+      if(!localStorage.getItem('jujube45')) {
+        this.quantity = 0
+      } else {
+        this.quantity = localStorage.getItem('jujube45')
+      }   
+    }
+  },
+  created(){
+    this.getCartNumber()
   },
 }
 </script>
@@ -79,10 +91,10 @@ export default {
       border-radius: 50%;
       span{
         position: absolute;
-        width: 100%;
-        height: 100%;
+        width: 20px;
+        height: 20px;
         top: -15px;
-        right: -2px;
+        right: -3px;
         font-size: 14px;
         color: white;
       }
