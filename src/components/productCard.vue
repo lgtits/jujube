@@ -37,8 +37,16 @@ export default {
     addCart(){
       if(this.jujube.quantity ===0){
         return
+      } else{
+        if(this.jujube.name === '柴燒蜜棗糖'){
+          alert(` ${this.jujube.name} ${this.jujube.quantity}包，成功加入購物車!`)
+          this.jujube.quantity = 0
+        } else {
+          alert(` ${this.jujube.name} ${this.jujube.quantity}箱，成功加入購物車!`)
+          this.jujube.quantity = 0
+        }
       }
-      alert(` ${this.jujube.name} ${this.jujube.quantity}箱，成功加入購物車!`)
+
     },
     addQuantity(){
       this.jujube.quantity ++
@@ -87,29 +95,33 @@ export default {
   }
   .control-panel{
     width: 100%;
+    height: 30px;
     .quantity-control{
       width: 10%;
       background-color: transparent;
       outline: none;
-      border: 1px solid black;
-      height: 30px;
-            padding: none;
+      border:none;
+      border: 1px solid $main-gray;
+      height: 100%;
+      padding: none;
     }
     .quantity{
       width: 20%;
       background-color: transparent;
       text-align: center;
-      height: 30px;
+      height: 100%;
+      outline: none;
       border:none;
-      border-top: 1px solid black;
-      border-bottom: 1px solid black;
+      border-top: 1px solid $main-gray;
+      border-bottom: 1px solid $main-gray;
       outline: none;
       padding: none;
     }
     .add-cart{
       color: $main-green;
       font-weight: 800;
-      line-height: 20px;
+      height: 100%;
+      line-height: 100%;
       background-color: white;
       border: 4px solid $main-green;
       border-radius: 10px;

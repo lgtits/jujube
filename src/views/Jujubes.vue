@@ -6,7 +6,7 @@
       <Sidebar />
       <div class="main-content">
         <h1>
-          棗子 & 棗子糖
+          棗子 & 蜜棗糖
         </h1>
         <div class="jujube-box">
           <ProductCard 
@@ -68,7 +68,7 @@ const productData = {
     },
     {
       'id': 5,
-      'name': '柴燒棗子糖',
+      'name': '柴燒蜜棗糖',
       'image':'https://i.imgur.com/gLE8CD3.jpg',
       'specification':'頂級蜜棗製作',
       'subSpecification':'顆數: 10 ± 1',
@@ -110,6 +110,7 @@ export default {
       margin: 0 auto;
       justify-content: space-around;
       flex-flow: wrap;
+      margin-top: 15px;
     }
   }
 }
