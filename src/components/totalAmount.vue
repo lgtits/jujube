@@ -7,6 +7,7 @@
       </h2> 
     </div>
     <div class="checkout-wrapper">
+      <router-link to="/jujubes" class="return">← 繼續選購</router-link>
       <button class="checkout ">買單</button>
     </div>
   </div>
@@ -19,13 +20,25 @@
       margin: 20px;
     }
     .checkout-wrapper{
+      display: flex;
+      justify-content: space-evenly;
+      margin-bottom: 20px;
+      .return{
+        width: 30%;
+        font-weight: 800;
+        font-size: 20px;
+        line-height: 50px;
+        font-weight: 800;
+        color: $main-green;
+        &:hover{
+          color: $main-yellow;
+          text-decoration: none;
+        }
+      }
       .checkout{
         border: none;
         outline: none;
-        display: block;
-        margin: 20px auto;
         width: 30%;
-        display: block;
         background-color: white;
         border-radius: 50px;
         border:  5px solid $main-green;

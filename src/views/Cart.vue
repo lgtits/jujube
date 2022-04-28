@@ -3,9 +3,9 @@
     <Header />
     <ComputerHeader />
     <main>
-      <div>
+      <h2 class="title">
         購物車
-      </div>
+      </h2>
       <ShoppingList />
       <TotalAmount />
     </main>
@@ -35,6 +35,18 @@ export default {
 <style lang="scss" scoped>
   main{
     padding-top: 60px;
+    h2{
+      margin: 20px;
+    }
+  }
+
+  @media screen and (min-width: 700px) {
+    main{
+      padding-top: 0;
+      .title{
+        margin-top: 10px;
+      }
+    }
   }
 </style>
 
