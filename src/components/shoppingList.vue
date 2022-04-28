@@ -3,7 +3,7 @@
     <ul class="product-list">
       <li class="product" v-for="item in this.$store.state.shoppingList" :key="item.id">
         <div class="product-select-panel">
-          <input type="checkbox" class="product-checkbox" name="product-checkbox">
+          <!-- <input type="checkbox" class="product-checkbox" name="product-checkbox"> -->
           <label for="product-checkbox" class="product-info">
             <div class="product-image-wrapper">
               <img :src="item.image" alt="" class="product-image">

@@ -15,7 +15,7 @@ export default new Vuex.Store({
         'specification': '超大大(每顆平均4.5兩)',
         'subSpecification': '顆數: 16 ± 1',
         'price': 750,
-        'quantity': localStorage.getItem('jujube45')
+        'quantity': localStorage.getItem('jujube45') ? localStorage.getItem('jujube45') : 0
       },
       {
         'id': 'jujube40',
@@ -33,7 +33,7 @@ export default new Vuex.Store({
         'specification': '頂級(每顆平均3.5-3.9兩)',
         'subSpecification': '顆數: 21 ± 1',
         'price': 500,
-        'quantity': localStorage.getItem('jujube35')
+        'quantity': localStorage.getItem('jujube35') ? localStorage.getItem('jujube35') : 0
       },
       {
         'id': 'jujube30',
@@ -42,7 +42,7 @@ export default new Vuex.Store({
         'specification': '特級(每顆平均3.0-3.4兩)',
         'subSpecification': '顆數: 24 ± 1',
         'price': 400,
-        'quantity': localStorage.getItem('jujube30')
+        'quantity': localStorage.getItem('jujube30') ? localStorage.getItem('jujube30') : 0
       },
       {
         'id': 'jujubeCandy',
@@ -51,7 +51,7 @@ export default new Vuex.Store({
         'specification': '頂級蜜棗製作',
         'subSpecification': '顆數: 10 ± 1',
         'price': 150,
-        'quantity': localStorage.getItem('jujubeCandy')
+        'quantity': localStorage.getItem('jujubeCandy') ? localStorage.getItem('jujubeCandy') : 0
       }
     ]
   },
