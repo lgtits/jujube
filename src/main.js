@@ -28,6 +28,8 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 // messenger
 import VueFbCustomerChat from 'vue-fb-customer-chat'
 
+import store from './store'
+
 Vue.use(VueFbCustomerChat, {
   page_id: "206304263433214", //  change 'null' to your Facebook Page ID,
   theme_color: '#A0CDA6', // theme color in HEX
@@ -39,5 +41,6 @@ Vue.config.productionTip = false
 
 new Vue({
   router,
+  store,
   render: h => h(App)
 }).$mount('#app')

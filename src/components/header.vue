@@ -44,11 +44,13 @@
 </template>
 
 <script>
+const qtr = localStorage.getItem('jujube45')
 
 export default {
   data() {
     return{
-      quantity: ''
+      quantity: '',
+      qtr
     }
   },
   methods:{
@@ -64,8 +66,11 @@ export default {
     this.getCartNumber()
   },
   watch:{
-    quantity(){
-      console.log('a')
+    // localStorage.getItem('jujube45'){
+    //   console.log('a')
+    // }
+    qtr(){
+      console.log('test')
     }
   }
 }
