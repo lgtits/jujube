@@ -26,7 +26,7 @@
       <router-link to="/cart">
         <font-awesome-icon icon="fa-solid fa-cart-shopping" size="xl" />
         <div class="favorite_count">
-          <span>{{quantity}}</span>
+          <span>{{this.$store.state.shoppingCartQuantity}}</span>
         </div>
       </router-link>
     </div>
@@ -44,34 +44,34 @@
 </template>
 
 <script>
-const qtr = localStorage.getItem('jujube45')
+// import { mapState } from 'vuex'
 
 export default {
   data() {
     return{
-      quantity: '',
-      qtr
+      // quantity: this.$store.state.shoppingCartQuantity,
     }
   },
   methods:{
-    getCartNumber(){
-      if(!localStorage.getItem('jujube45')) {
-        this.quantity = 0
-      } else {
-        this.quantity = localStorage.getItem('jujube45')
-      }   
-    }
+    // getCartNumber(){
+    //   if(!localStorage.getItem('jujube45')) {
+    //     this.quantity = 0
+    //   } else {
+    //     this.quantity = localStorage.getItem('jujube45')
+    //   }   
+    // }
   },
   created(){
-    this.getCartNumber()
+    // this.getCartNumber()
+    this.$store.commit('getShoppingCartQuantity')
   },
   watch:{
     // localStorage.getItem('jujube45'){
     //   console.log('a')
     // }
-    qtr(){
-      console.log('test')
-    }
+  },
+  computed:{
+    // ...mapState('shoppingCartQuantity')
   }
 }
 </script>

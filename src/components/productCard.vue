@@ -35,17 +35,21 @@ export default {
   },
   methods:{
     addCart(){
+      
+
       if(this.jujube.quantity ===0){
         return
       } else{
         if(this.jujube.name === '柴燒蜜棗糖'){
           alert(` ${this.jujube.name} ${this.jujube.quantity}包，成功加入購物車!`)
           localStorage.setItem(this.jujube.id, this.jujube.quantity)
+          this.$store.commit('getShoppingCartQuantity')
           this.jujube.quantity = 0
+          
         } else {
           alert(` ${this.jujube.name} ${this.jujube.quantity}箱，成功加入購物車!`)
           localStorage.getItem(this.jujube.id) > 0 ? localStorage.setItem(this.jujube.id,  Number(localStorage.getItem(this.jujube.id)) + this.jujube.quantity) : localStorage.setItem(this.jujube.id, this.jujube.quantity)
-          
+          this.$store.commit('getShoppingCartQuantity')
           this.jujube.quantity = 0
         }
       }

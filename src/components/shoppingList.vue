@@ -1,25 +1,25 @@
 <template>
   <div class="shopping-list">
     <ul class="product-list">
-      <li class="product">
+      <li class="product" v-for="item in this.$store.state.shoppingList" :key="item.id">
         <div class="product-select-panel">
           <input type="checkbox" class="product-checkbox" name="product-checkbox">
           <label for="product-checkbox" class="product-info">
             <div class="product-image-wrapper">
-              <img src="../assets/image/product1.jpg" alt="" class="product-image">
+              <img :src="item.image" alt="" class="product-image">
             </div>
           </label>
         </div>
         <div class="product-description">
           <div class="product-name-wrapper">
-            <span class="product-name">雪麗棗</span>
+            <span class="product-name">{{item.name}}</span>
           </div>
           <div class="specification-wrapper">
-            <span class="specification">4.5A-超大大</span>
-            <span class="specification">(每顆平均4.5兩以上)</span>
+            <span class="specification">{{item.specification}}</span>
+            <span class="specification">{{item.subSpecification}}</span>
           </div>
           <div class="price-wrapper">
-            <span class="unit-price">$300</span>
+            <span class="unit-price">${{item.price}}</span>
           </div>
         </div>
         <div class="control-panel">
@@ -27,15 +27,15 @@
             <button class="quantity-up" @click="quantityControl">
               +
             </button>
-            <input type="number" min="0" v-model="quantity" class="quantity">
-            <button class="quantity-down" @click="quantityControl">
+            <input type="number" min="0" v-model="item.quantity" class="quantity">
+            <button class="quantity-down" @click="quantityControl(item.id)">
               -
             </button>
           </div>
           <div class="gross-price-wrapper">
             <span class="gross-price">$300</span>
           </div>
-          <button class="btn delete">
+          <button class="btn delete" @click="deleteItem">
             刪除
           </button>
         </div>
@@ -49,7 +49,7 @@
 export default {
   data() {
     return{
-      quantity: 0
+      shoppingList: ''
     }   
   },
   methods:{
@@ -61,6 +61,13 @@ export default {
          console.log('quantity down')
          this.quantity > 0 ? this.quantity -- : this.quantity = 0
        }
+     },
+     getShoppingList(){
+       this.shoppingList = localStorage.getItem('jujube45')
+     },
+     deleteItem(){
+       console.log(this.$store.state.shoppingList)
+       console.log(this.$store.state.shoppingCartQuantity)
      }
   }
 }
@@ -80,8 +87,8 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    border: 1px solid $main-gray;
-    height: 100px;
+    border-top: 1px solid $main-gray;
+    height: 120px;
     .product-select-panel{
       display: flex;
       align-items: center;

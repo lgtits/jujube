@@ -6,7 +6,7 @@
         <router-link to="/cart">
           <font-awesome-icon icon="fa-solid fa-cart-shopping" size="xl" />
           <div class="favorite_count">
-            <span>{{quantity}}</span>
+            <span>{{this.$store.state.shoppingCartQuantity}}</span>
           </div>
         </router-link>
       </div>
@@ -34,20 +34,19 @@
 export default {
   data() {
     return{
-      quantity: 0
     }
   },
   methods:{
-    getCartNumber(){
-      if(!localStorage.getItem('jujube45')) {
-        this.quantity = 0
-      } else {
-        this.quantity = localStorage.getItem('jujube45')
-      }   
-    }
+    // getCartNumber(){
+    //   if(!localStorage.getItem('jujube45')) {
+    //     this.quantity = 0
+    //   } else {
+    //     this.quantity = localStorage.getItem('jujube45')
+    //   }   
+    // }
   },
   created(){
-    this.getCartNumber()
+    // this.getCartNumber()
   },
 }
 </script>
