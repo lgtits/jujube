@@ -89,6 +89,7 @@ export default {
     justify-content: space-around;
     border-top: 1px solid $main-gray;
     height: 120px;
+    padding: 10px;
     .product-select-panel{
       display: flex;
       align-items: center;
@@ -117,6 +118,7 @@ export default {
       }
     }
     .product-description{
+      margin-left: 10px;
       width: 45%;
       text-align: center;
       .product-name-wrapper{
@@ -128,6 +130,7 @@ export default {
       .specification-wrapper{
           .specification{
             display: block;
+            font-size: 0.9rem;
           }
       }
       .price-wrapper{
@@ -146,13 +149,22 @@ export default {
       align-items: center;
       .quantity-control-panel{
         width: 90%;
+        margin-left: 30px;
         button{
-          width: 25%;
+          width: 20%;
           max-width: 50px;
+          outline: none;
+          border:none;
+          border: 1px solid $main-gray;
+          background-color: white;
         }
         .quantity{
-          width: 40%;
+          width: 35%;
           text-align: center;
+          outline: none;
+          border:none;
+          border-top: 1px solid $main-gray;
+          border-bottom: 1px solid $main-gray;
         }
       }
       .delete{
@@ -175,6 +187,9 @@ export default {
         }
         .specification-wrapper{
           width: 50%;
+          .specification{
+          font-size: 1rem;
+          }
         }
       }
       .control-panel{
