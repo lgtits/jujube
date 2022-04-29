@@ -8,10 +8,21 @@
     </div>
     <div class="checkout-wrapper">
       <router-link to="/jujubes" class="return">← 繼續選購</router-link>
-      <button class="checkout ">買單</button>
+      <button class="checkout" @click="checkout">結賬 →</button>
     </div>
   </div>
 </template>
+<script>
+
+export default {
+  methods: {
+    checkout(){
+      console.log('結賬')
+    }
+  },
+}
+</script>
+
 
 <style lang="scss" scoped>
   .amount-wrapper{
