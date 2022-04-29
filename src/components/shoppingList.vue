@@ -1,8 +1,8 @@
 <template>
   <div class="shopping-list">
     <ul class="product-list">
-      <li class="product" v-for="item in this.$store.state.shoppingList" :key="item.id">
-        <div class="product-select-panel">
+      <li class="product" v-for="item in this.$store.state.shoppingListFiltered" :key="item.id" >
+        <div class="product-select-panel" >
           <!-- <input type="checkbox" class="product-checkbox" name="product-checkbox"> -->
           <label for="product-checkbox" class="product-info">
             <div class="product-image-wrapper">
@@ -24,18 +24,18 @@
         </div>
         <div class="control-panel">
           <div class="quantity-control-panel">
-            <button class="quantity-up" @click="quantityControl">
+            <button class="quantity-up" @click="addQuantity(item)">
               +
             </button>
             <input type="number" min="0" v-model="item.quantity" class="quantity">
-            <button class="quantity-down" @click="quantityControl(item.id)">
+            <button class="quantity-down" @click="reduceQuantity(item)">
               -
             </button>
           </div>
           <div class="gross-price-wrapper">
             <span class="gross-price">$300</span>
           </div>
-          <button class="btn delete" @click="deleteItem">
+          <button class="btn delete" @click="deleteItem(item.id)">
             刪除
           </button>
         </div>
@@ -49,26 +49,33 @@
 export default {
   data() {
     return{
-      shoppingList: ''
+      shoppingList: []
     }   
   },
   methods:{
-     quantityControl(e){
-       if(e.target.className === 'quantity-up'){
-         console.log('quantity up')
-         this.quantity ++
-       } else if(e.target.className === 'quantity-down'){
-         console.log('quantity down')
-         this.quantity > 0 ? this.quantity -- : this.quantity = 0
+     addQuantity(item){
+       item.quantity ++
+      localStorage.setItem(item.id, item.quantity)
+      this.$store.commit('getShoppingCartQuantity')
+      this.$store.commit('getShoppingList')
+     },
+     reduceQuantity(item){
+       if(item.quantity === 1) {
+         localStorage.setItem(item.id, 0)
+         this.$store.commit('getShoppingList')
        }
+       item.quantity --
+       localStorage.setItem(item.id, item.quantity)
+         this.$store.commit('getShoppingCartQuantity')
+         this.$store.commit('getShoppingList')
      },
-     getShoppingList(){
-       this.shoppingList = localStorage.getItem('jujube45')
-     },
-     deleteItem(){
-       console.log(this.$store.state.shoppingList)
-       console.log(this.$store.state.shoppingCartQuantity)
+     deleteItem(id){
+       localStorage.setItem(id, 0)
+       this.$store.commit('getShoppingList')
      }
+  },
+  created(){
+    this.$store.commit('getShoppingList')
   }
 }
 </script>
@@ -168,7 +175,9 @@ export default {
         }
       }
       .delete{
-        
+        &:hover{
+          color: $main-yellow;
+        }
       }
       .gross-price-wrapper{
         display: none;
