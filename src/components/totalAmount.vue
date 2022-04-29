@@ -3,7 +3,7 @@
   ">
     <div class="amount">
       <h2>
-        總金額: $xxxxxx
+        總金額: {{this.$store.state.totalAmount.toLocaleString('en-US')}}
       </h2> 
     </div>
     <div class="checkout-wrapper">

@@ -7,6 +7,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     shoppingCartQuantity: '',
+    shoppingListFiltered: [],
+    totalAmount:'',
     shoppingList: [
       {
         'id': 'jujube45',
@@ -59,6 +61,17 @@ export default new Vuex.Store({
     getShoppingCartQuantity(state){
       const totalAmount = Number(localStorage.getItem('jujube45')) + Number(localStorage.getItem('jujube40')) + Number(localStorage.getItem('jujube35')) + Number(localStorage.getItem('jujube30')) + Number(localStorage.getItem('jujubeCandy')) 
       state.shoppingCartQuantity = totalAmount
+    },
+    getShoppingList(state){
+      state.shoppingListFiltered = []
+      state.totalAmount = 0
+      state.shoppingList.forEach(item => {     
+        item.quantity = localStorage.getItem(item.id)   
+        if(item.quantity > 0) {
+          state.shoppingListFiltered.push(item)
+          state.totalAmount = Number(state.totalAmount) + item.price * item.quantity
+        }
+        });
     }
   },
   actions: {
