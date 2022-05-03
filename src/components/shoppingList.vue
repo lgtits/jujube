@@ -71,6 +71,7 @@ export default {
      },
      deleteItem(id){
        localStorage.setItem(id, 0)
+       this.$store.commit('getShoppingCartQuantity')
        this.$store.commit('getShoppingList')
      }
   },
