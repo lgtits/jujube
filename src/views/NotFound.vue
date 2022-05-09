@@ -8,7 +8,8 @@
 
 
     <div class="form">
-<form   method='post' action='https://core.newebpay.com/MPG/mpg_gateway'> 
+<!-- <form   method='post' action='https://core.newebpay.com/MPG/mpg_gateway'>  -->
+<form  > 
 <label for="">merchantID</label>
 <input  id='MerchantID' name='MerchantID' value='MS135597852'>
 <label for="">trade info</label>
@@ -24,7 +25,7 @@
 <input id='ItemDesc' name='ItemDesc' value='<?php echo $ItemDesc;?>'>
 <input  id='Email' name='Email' value='<?php echo $Email?>'>
 <input  id='LoginType' name='LoginType' value='no'> -->
-<button>delievier</button>
+<button @click="showData">delivery</button>
 </form>
     </div>
   </div>
@@ -48,8 +49,38 @@
 
 // import axios from 'axios'
 
+///crypto
+import CryptoJS from 'crypto-js'
+// const crypto = require('crypto');
+
+// const HashKey = 'jMv52ZPKDUlJhXRlU2siHu3tQCXMd8TI'
+// const HashIV = 'C7yyC3JOKW4RJbfP'
+
+// const trade_info_arr = new URLSearchParams({
+//   MerchantID:  'MS135597852',
+//   RespondType: 'JSON',
+//   TimeStamp: parseInt(new Date().getTime()/1000),
+//   Version: 2.0,
+//   MerchantOrderNo:'S_1485232229',
+//   Amt: 40,
+//   ItemDesc:'UnitTest'
+// });
+
 
 export default {
+  data() {
+    return{
+      MerchantID:  'MS135597852',
+      RespondType: 'JSON',
+      TimeStamp: parseInt(new Date().getTime()/1000),
+      Version: 2.0,
+      MerchantOrderNo:'S_1485232229',
+      Amt: 40,
+      ItemDesc:'UnitTest',
+      HashKey: 'jMv52ZPKDUlJhXRlU2siHu3tQCXMd8TI',
+      HashIV: 'C7yyC3JOKW4RJbfP'
+    }
+  },
   methods:{
     // async getResult() {
     //   try{
@@ -64,15 +95,47 @@ export default {
     //     console.log('error', error)
     //   }
     // },
-    handleSubmit(e) {
-      const form = new FormData(e.target);
-      // this.sendAJAXRequest(form);
-      console.log(form)
-      let object = {};
-      form.forEach((val, key) => {
-        object[key] = val;
+    // handleSubmit(e) {
+    //   const form = new FormData(e.target);
+    //   // this.sendAJAXRequest(form);
+    //   console.log(form)
+    //   let object = {};
+    //   form.forEach((val, key) => {
+    //     object[key] = val;
+    //   });
+    //   console.log(object)
+    // },
+    showData(){
+      const trade_info_arr = new URLSearchParams({
+        MerchantID:  this.MerchantID,
+        RespondType: this.RespondType,
+        TimeStamp: parseInt(new Date().getTime()/1000),
+        Version: this.Version,
+        MerchantOrderNo: this.MerchantOrderNo,
+        ItemDesc: this.ItemDesc
       });
-      console.log(object)
+      console.log()
+      console.log(trade_info_arr.toString())
+      console.log(trade_info_arr)
+      let aes = CryptoJS.AES.encrypt(trade_info_arr.toString(), 'khhk').toString();
+      console.log('結果：', aes)
+
+      // 
+
+      // var encrypt = ((val) => {
+      //   let cipher = crypto.createCipheriv('aes-256-cbc', this.HashKey, this.HashIV);
+      //   let encrypted = cipher.update(val, 'utf8', 'hex');
+      //   return encrypted;
+      // });
+
+      // console.log('測試的密文：', encrypt(trade_info_arr.toString()))
+
+      // 自己研究 document
+      let key = CryptoJS.enc.Hex.parse(this.HashKey)
+      let iv = CryptoJS.enc.Hex.parse(this.HashIV)
+      console.log('key', key)
+      console.log(iv)
+
     },
     sendAJAXRequest(form) {
       const url = 'https://ccore.newebpay.com/MPG/mpg_gateway';
