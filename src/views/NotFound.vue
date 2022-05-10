@@ -47,7 +47,9 @@
 <script>
 
 // import axios from 'axios'
-
+var CryptoJS = require("crypto-js");
+var ciphertext = CryptoJS.AES.encrypt('my message', 'secret key 123').toString();
+console.log('密碼來咯：',ciphertext)
 
 export default {
   methods:{
@@ -94,3 +96,4 @@ export default {
   }
 }
 </script>
+
