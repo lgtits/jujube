@@ -9,12 +9,13 @@
 
     <div class="form">
 <form   method='post' action='https://core.newebpay.com/MPG/mpg_gateway'> 
+<!-- <form  >  -->
 <label for="">merchantID</label>
-<input  id='MerchantID' name='MerchantID' value='MS135597852'>
+<input  id='MerchantID' name='MerchantID' v-model="MerchantID">
 <label for="">trade info</label>
-<input  id='TradeInfo' name='TradeInfo' value=''>
+<input  id='TradeInfo' name='TradeInfo' v-model="TradeInfo">
 <label for="">tradesha</label>
-<input  id='TradeSha' name='TradeSha' value=''>
+<input  id='TradeSha' name='TradeSha' v-model="TradeSha">
 <!-- <input  id='RespondType' name='RespondType' value='JSON'> -->
 <!-- <input id='TimeStamp' name='TimeStamp' value='<?php echo $date_now;?>'> -->
 <label for="">version</label>
@@ -24,7 +25,7 @@
 <input id='ItemDesc' name='ItemDesc' value='<?php echo $ItemDesc;?>'>
 <input  id='Email' name='Email' value='<?php echo $Email?>'>
 <input  id='LoginType' name='LoginType' value='no'> -->
-<button>delievier</button>
+<button>delivery</button>
 </form>
     </div>
   </div>
@@ -45,13 +46,41 @@
 </style>
 
 <script>
-
 // import axios from 'axios'
-var CryptoJS = require("crypto-js");
-var ciphertext = CryptoJS.AES.encrypt('my message', 'secret key 123').toString();
-console.log('密碼來咯：',ciphertext)
+///crypto
+import CryptoJS from 'crypto-js'
+// const crypto = require('crypto');
+
+// const HashKey = 'jMv52ZPKDUlJhXRlU2siHu3tQCXMd8TI'
+// const HashIV = 'C7yyC3JOKW4RJbfP'
+
+// const trade_info_arr = new URLSearchParams({
+//   MerchantID:  'MS135597852',
+//   RespondType: 'JSON',
+//   TimeStamp: parseInt(new Date().getTime()/1000),
+//   Version: 2.0,
+//   MerchantOrderNo:'S_1485232229',
+//   Amt: 40,
+//   ItemDesc:'UnitTest'
+// });
+
 
 export default {
+  data() {
+    return{
+      MerchantID:  'MS135597852',
+      RespondType: 'JSON',
+      TimeStamp: parseInt(new Date().getTime()/1000),
+      Version: 2.0,
+      MerchantOrderNo:'S_1485232229',
+      Amt: 40,
+      ItemDesc:'UnitTest',
+      HashKey: 'jMv52ZPKDUlJhXRlU2siHu3tQCXMd8TI',
+      HashIV: 'C7yyC3JOKW4RJbfP',
+      TradeInfo:'',
+      TradeSha:''
+    }
+  },
   methods:{
     // async getResult() {
     //   try{
@@ -66,15 +95,46 @@ export default {
     //     console.log('error', error)
     //   }
     // },
-    handleSubmit(e) {
-      const form = new FormData(e.target);
-      // this.sendAJAXRequest(form);
-      console.log(form)
-      let object = {};
-      form.forEach((val, key) => {
-        object[key] = val;
+    // handleSubmit(e) {
+    //   const form = new FormData(e.target);
+    //   // this.sendAJAXRequest(form);
+    //   console.log(form)
+    //   let object = {};
+    //   form.forEach((val, key) => {
+    //     object[key] = val;
+    //   });
+    //   console.log(object)
+    // },
+    showData(){
+      const trade_info_arr = new URLSearchParams({
+        MerchantID:  this.MerchantID,
+        RespondType: this.RespondType,
+        TimeStamp: parseInt(new Date().getTime()/1000),
+        Version: this.Version,
+        MerchantOrderNo: this.MerchantOrderNo,
+        ItemDesc: this.ItemDesc
       });
-      console.log(object)
+      console.log('交易資料URL ENCODED:', trade_info_arr.toString())
+      // 自己研究 document
+      // let key = CryptoJS.enc.Hex.parse(this.HashKey)
+      let key = CryptoJS.enc.Utf8.parse(this.HashKey)
+      // let key = this.HashKey
+      // let iv = CryptoJS.enc.Hex.parse(this.HashIV)
+      let iv = CryptoJS.enc.Utf8.parse(this.HashIV)
+
+      console.log('key', key)
+      console.log('iv', iv)
+      var encrypted = CryptoJS.AES.encrypt(trade_info_arr.toString(), key, { iv: iv });
+      console.log('encrypted', encrypted)
+      const cipherText = encrypted.ciphertext.toString()
+      console.log('cipherText:', cipherText)
+      this.TradeInfo = cipherText
+      //tradesha
+      let beforeTradeSha = `HashKey=${this.HashKey}&` + cipherText + `&HashIV=${this.HashIV}`
+      console.log('before tradeSha', beforeTradeSha)
+      const tradeSha = CryptoJS.SHA256(beforeTradeSha).toString().toUpperCase();
+      console.log('tradeSha:', tradeSha)
+      this.TradeSha = tradeSha
     },
     sendAJAXRequest(form) {
       const url = 'https://ccore.newebpay.com/MPG/mpg_gateway';
@@ -93,6 +153,7 @@ export default {
   },
   created(){
     // this.getResult()
+    this.showData()
   }
 }
 </script>
