@@ -53,15 +53,15 @@ import CryptoJS from 'crypto-js'
 export default {
   data() {
     return{
-      MerchantID:  'MS135597852',
+      MerchantID:  'MS136074798',
       RespondType: 'JSON',
       TimeStamp: parseInt(new Date().getTime()/1000),
       Version: 2.0,
       MerchantOrderNo:'S_1485232229',
       Amt: 40,
       ItemDesc:'UnitTest',
-      HashKey: 'jMv52ZPKDUlJhXRlU2siHu3tQCXMd8TI',
-      HashIV: 'C7yyC3JOKW4RJbfP',
+      HashKey: 'xfPcxoYSugve9JQWCHhvMMI0t7QZ2GcE',
+      HashIV: 'C1jp9ruxzNXY86qP',
       TradeInfo:'',
       TradeSha:''
     }
