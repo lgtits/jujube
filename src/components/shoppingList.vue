@@ -33,7 +33,7 @@
             </button>
           </div>
           <div class="gross-price-wrapper">
-            <span class="gross-price">$300</span>
+            <span class="gross-price">${{(item.price * item.quantity).toLocaleString('en-US')}}</span>
           </div>
           <button class="btn delete" @click="deleteItem(item.id)">
             刪除
@@ -71,6 +71,7 @@ export default {
      },
      deleteItem(id){
        localStorage.setItem(id, 0)
+       this.$store.commit('getShoppingCartQuantity')
        this.$store.commit('getShoppingList')
      }
   },
@@ -101,7 +102,7 @@ export default {
       display: flex;
       align-items: center;
       justify-content: space-around;
-      width: 25%;
+      width: 20%;
       height: 100%;
       .product-checkbox{
         height: 20px;
@@ -148,7 +149,7 @@ export default {
       }
     }
     .control-panel{
-      width: 30%;
+      width: 35%;
       height: 100%;
       display: flex;
       flex-direction: column;
@@ -156,7 +157,7 @@ export default {
       align-items: center;
       .quantity-control-panel{
         width: 90%;
-        margin-left: 30px;
+        margin-left: 25px;
         button{
           width: 20%;
           max-width: 50px;

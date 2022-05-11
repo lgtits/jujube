@@ -3,8 +3,16 @@
     <div class="product-image">
       <img 
         :src="jujube.image" alt="" 
+        v-b-modal="jujube.id"
+        class="product-thumbnail"
       />
     </div>
+    <!-- bootstrap modal -->
+    <b-modal :id="jujube.id" title="BootstrapVue" hide-footer size="xl" class="vue-modal">
+      <div class="pic-wrapper">
+        <img :src="jujube.image" alt="" class="modal-image">
+      </div>
+    </b-modal>
     <div class="description">
       <p class="product-name">{{jujube.name}}</p>
       <p class="product-price">{{jujube.specification}}</p>
@@ -90,18 +98,22 @@ export default {
     width: 200px;
     height: 200px;
     margin: 25px auto;
-    img {
+    .product-thumbnail {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
   }
+
+
+
   .description{
     p {
       margin-bottom: 10px;
       color: $main-color;
     }
   }
+  
   .control-panel{
     width: 100%;
     height: 30px;
@@ -142,5 +154,13 @@ export default {
       }
     }
   }
+
 } 
+// modal content
+.pic-wrapper{
+      .modal-image{
+        width: 200px;
+        height: 200px;
+      }
+}
 </style>
