@@ -9,6 +9,7 @@ import Shipping from '../views/Shipping.vue'
 import Contact from '../views/Contact.vue'
 import NotFound from '../views/NotFound.vue'
 import Cart from '../views/Cart.vue'
+import Checkout from '../views/Checkout.vue'
 
 Vue.use(VueRouter)
 
@@ -60,6 +61,11 @@ const routes = [
     path: '/cart',
     name: 'Cart',
     component: Cart
+  },
+  {
+    path: '/checkout',
+    name: 'Checkout',
+    component: Checkout
   },
   {
     path: '*',

@@ -8,7 +8,7 @@
 
 
     <div class="form">
-<form   method='post' action='https://core.newebpay.com/MPG/mpg_gateway'> 
+<form   method='post' action='https://ccore.newebpay.com/MPG/mpg_gateway'> 
 <!-- <form  >  -->
 <label for="">merchantID</label>
 <input  id='MerchantID' name='MerchantID' v-model="MerchantID">
@@ -27,6 +27,44 @@
 <input  id='LoginType' name='LoginType' value='no'> -->
 <button>delivery</button>
 </form>
+    </div>
+    <div class="control data">
+      <div>
+        ID:<input type="text" v-model="MerchantID">
+      </div>
+      <div>
+        RespondType:<input type="text" v-model="RespondType">
+      </div>
+      <div>
+        TimeStamp:<input type="text" v-model="TimeStamp">
+      </div>
+      <div>
+        Version:<input type="text" v-model="Version">
+      </div>
+      <div>
+        MerchantOrderNo:<input type="text" v-model="MerchantOrderNo">
+      </div>
+      <div>
+        Amt:<input type="text" v-model="Amt">
+      </div>
+      <div>
+        ItemDesc:<input type="text" v-model="ItemDesc">
+      </div>
+      <div>
+        HashKey:<input type="text" v-model="HashKey">
+      </div>
+      <div>
+        HashIV:<input type="text" v-model="HashIV">
+      </div>
+      <div>
+        LoginType:<input type="text" v-model="LoginType">
+      </div>
+      <div>
+        TradeInfo:<input type="text" v-model="TradeInfo">
+      </div>
+      <div>
+        TradeSha:<input type="text" v-model="TradeSha">
+      </div>
     </div>
   </div>
   
@@ -57,11 +95,12 @@ export default {
       RespondType: 'JSON',
       TimeStamp: parseInt(new Date().getTime()/1000),
       Version: 2.0,
-      MerchantOrderNo:'S_1485232229',
+      MerchantOrderNo:'1485232229',
       Amt: 40,
       ItemDesc:'UnitTest',
       HashKey: 'xfPcxoYSugve9JQWCHhvMMI0t7QZ2GcE',
       HashIV: 'C1jp9ruxzNXY86qP',
+      LoginType: 0,
       TradeInfo:'',
       TradeSha:''
     }
@@ -78,6 +117,7 @@ export default {
     //   console.log(object)
     // },
     showData(){
+      this.TimeStamp = parseInt(new Date().getTime()/1000)
       const trade_info_arr = new URLSearchParams({
         MerchantID:  this.MerchantID,
         RespondType: this.RespondType,
@@ -85,32 +125,30 @@ export default {
         Version: this.Version,
         MerchantOrderNo: this.MerchantOrderNo,
         Amt: this.Amt,
-        ItemDesc: this.ItemDesc
+        ItemDesc: this.ItemDesc,
+        // LoginType: 0
       });
-      console.log('交易資料URL ENCODED:', trade_info_arr.toString())
-      // 自己研究 document
-      // let key = CryptoJS.enc.Hex.parse(this.HashKey)
+      // console.log('交易資料URL ENCODED:', trade_info_arr.toString())
+
       let key = CryptoJS.enc.Utf8.parse(this.HashKey)
-      // let key = this.HashKey
-      // let iv = CryptoJS.enc.Hex.parse(this.HashIV)
       let iv = CryptoJS.enc.Utf8.parse(this.HashIV)
 
-      console.log('key', key)
-      console.log('iv', iv)
+      // console.log('key', key)
+      // console.log('iv', iv)
       //AES encryption
-      var encrypted = CryptoJS.AES.encrypt(trade_info_arr.toString(), key, { 
+      let encrypted = CryptoJS.AES.encrypt(trade_info_arr.toString(), key, { 
         iv: iv,
         mode: CryptoJS.mode.CBC,
         padding: CryptoJS.pad.Pkcs7
       });
       const cipherText = encrypted.ciphertext.toString()
-      console.log('TradeInfo:', cipherText)
+      // console.log('TradeInfo:', cipherText)
       this.TradeInfo = cipherText
       //tradesha transfer
       let beforeTradeSha = `HashKey=${this.HashKey}&` + cipherText + `&HashIV=${this.HashIV}`
-      console.log('before tradeSha', beforeTradeSha)
+      // console.log('before tradeSha', beforeTradeSha)
       const tradeSha = CryptoJS.SHA256(beforeTradeSha).toString().toUpperCase();
-      console.log('TradeSha:', tradeSha)
+      // console.log('TradeSha:', tradeSha)
       this.TradeSha = tradeSha
     },
     sendAJAXRequest(form) {

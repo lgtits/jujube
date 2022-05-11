@@ -24,13 +24,13 @@ import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import { faPhone } from '@fortawesome/free-solid-svg-icons'
-
+import { faAppleWhole } from '@fortawesome/free-solid-svg-icons'
 
 /* import font awesome icon component */
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 /* add icons to the library */
-library.add(faLine, faFacebook, faInstagram, faShoppingCart, faBars, faXmark, faPhone)
+library.add(faLine, faFacebook, faInstagram, faShoppingCart, faBars, faXmark, faPhone, faAppleWhole)
 
 
 /* add font awesome icon component */
