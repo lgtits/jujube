@@ -4,7 +4,7 @@
       Not Found
     </h1>
     <router-link to="/">回首頁</router-link>
-    <button @click="getTradeInfo">test api</button>
+    <button @click="showData()">show Data</button>
 
 
     <div class="form">
@@ -49,21 +49,6 @@
 // import axios from 'axios'
 ///crypto
 import CryptoJS from 'crypto-js'
-// const crypto = require('crypto');
-
-// const HashKey = 'jMv52ZPKDUlJhXRlU2siHu3tQCXMd8TI'
-// const HashIV = 'C7yyC3JOKW4RJbfP'
-
-// const trade_info_arr = new URLSearchParams({
-//   MerchantID:  'MS135597852',
-//   RespondType: 'JSON',
-//   TimeStamp: parseInt(new Date().getTime()/1000),
-//   Version: 2.0,
-//   MerchantOrderNo:'S_1485232229',
-//   Amt: 40,
-//   ItemDesc:'UnitTest'
-// });
-
 
 export default {
   data() {
@@ -82,19 +67,6 @@ export default {
     }
   },
   methods:{
-    // async getResult() {
-    //   try{
-    //     const result = await axios.post('https://ccore.newebpay.com/MPG/mpg_gateway', {
-    //       MerchantID: 'MS135597852',
-    //       TradeInfo: '447567545fac4f29dbd76e7800cb88d419434d7ee2da71c6da8ac60e907f275f96d387ecd5ce18682f6a138b317d521e17bfa0088d783ba2b9c0945ad41c77a8be987d208cf2650a02f96b483a75a1e112f0068c7d6f44b20b37171a1b4b507cc0da70c46261efbd38ca44e15f3df3d57ac2e2fa6377ef4e8940e694a5242a49',
-    //       TradeSha: '2A1AA8B31AE65E00F74BF37D92A99CA5F68DEBDE8B7BB0D5597818C96FD57EE7',
-    //       Version: 2.0
-    //     })
-    //     console.log(result)
-    //   } catch(error){
-    //     console.log('error', error)
-    //   }
-    // },
     // handleSubmit(e) {
     //   const form = new FormData(e.target);
     //   // this.sendAJAXRequest(form);
@@ -112,6 +84,7 @@ export default {
         TimeStamp: parseInt(new Date().getTime()/1000),
         Version: this.Version,
         MerchantOrderNo: this.MerchantOrderNo,
+        Amt: this.Amt,
         ItemDesc: this.ItemDesc
       });
       console.log('交易資料URL ENCODED:', trade_info_arr.toString())
@@ -124,16 +97,20 @@ export default {
 
       console.log('key', key)
       console.log('iv', iv)
-      var encrypted = CryptoJS.AES.encrypt(trade_info_arr.toString(), key, { iv: iv });
-      console.log('encrypted', encrypted)
+      //AES encryption
+      var encrypted = CryptoJS.AES.encrypt(trade_info_arr.toString(), key, { 
+        iv: iv,
+        mode: CryptoJS.mode.CBC,
+        padding: CryptoJS.pad.Pkcs7
+      });
       const cipherText = encrypted.ciphertext.toString()
-      console.log('cipherText:', cipherText)
+      console.log('TradeInfo:', cipherText)
       this.TradeInfo = cipherText
-      //tradesha
+      //tradesha transfer
       let beforeTradeSha = `HashKey=${this.HashKey}&` + cipherText + `&HashIV=${this.HashIV}`
       console.log('before tradeSha', beforeTradeSha)
       const tradeSha = CryptoJS.SHA256(beforeTradeSha).toString().toUpperCase();
-      console.log('tradeSha:', tradeSha)
+      console.log('TradeSha:', tradeSha)
       this.TradeSha = tradeSha
     },
     sendAJAXRequest(form) {
