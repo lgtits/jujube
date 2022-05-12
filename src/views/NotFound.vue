@@ -106,16 +106,6 @@ export default {
     }
   },
   methods:{
-    // handleSubmit(e) {
-    //   const form = new FormData(e.target);
-    //   // this.sendAJAXRequest(form);
-    //   console.log(form)
-    //   let object = {};
-    //   form.forEach((val, key) => {
-    //     object[key] = val;
-    //   });
-    //   console.log(object)
-    // },
     showData(){
       this.TimeStamp = parseInt(new Date().getTime()/1000)
       const trade_info_arr = new URLSearchParams({

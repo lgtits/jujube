@@ -8,7 +8,7 @@
     </div>
     <div class="checkout-wrapper">
       <router-link to="/jujubes" class="return">← 繼續選購</router-link>
-      <button class="checkout" @click="checkout()">結賬 →</button>
+      <button class="checkout" @click="checkout()">結帳 →</button>
     </div>
   </div>
 </template>
@@ -17,7 +17,7 @@
 export default {
   methods: {
     checkout(){
-      console.log('結賬')
+      console.log('結帳')
       this.$router.push({ path: '/checkout' })
     }
   },
