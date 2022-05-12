@@ -63,27 +63,38 @@
           </li>
         </ul>
       </div>
-      <div class="address-wrapper">
-        <label for="address">寄送地點：</label>
-        <input type="text" id="address" value="臺南市中西區青年路21號">
-      </div>
-      <div class="contact-wrapper">
-        <label for="contact">聯絡電話：</label>
-        <input type="telephone" id="contact">
-      </div>
-      <div class="comment-wrapper">
-        <label for="comment">留言：</label>
-        <textarea type="text" id="comment">
-        </textarea>
-      </div>
-      <div class="amount-wrapper">
-        <span>訂單金額： 2700元</span>
-        <p>宅配費用： 0060元</p>
-        <span class="checkout-amount">總付款金額： 2760元</span>
-      </div>
+      <form id="newbpay" method='post' action='https://ccore.newebpay.com/MPG/mpg_gateway'>
+      <!-- hidden info-->
+        <label for="MerchantID" hidden>merchantID</label>
+        <input  id='MerchantID' name='MerchantID' value="MS136074798" hidden>
+        <label for="" hidden>trade info</label>
+        <input  id='TradeInfo' name='TradeInfo' value="TradeInfo" hidden>
+        <label for="" hidden>tradesha</label>
+        <input  id='TradeSha' name='TradeSha' value="TradeSha" hidden>
+        <label for="" hidden>version</label>
+        <input  id='Version' name='Version' value='2.0' hidden>
+        <div class="address-wrapper">
+          <label for="address">寄送地點：</label>
+          <input type="text" id="address" value="臺南市中西區青年路21號">
+        </div>
+        <div class="contact-wrapper">
+          <label for="contact">聯絡電話：</label>
+          <input type="telephone" id="contact">
+        </div>
+        <div class="comment-wrapper">
+          <label for="comment">留言：</label>
+          <textarea type="text" id="comment">
+          </textarea>
+        </div>
+        <div class="amount-wrapper">
+          <span>訂單金額： 2700元</span>
+          <p>宅配費用： 0060元</p>
+          <span class="checkout-amount">總付款金額： {{Amt}}元</span>
+        </div>
+      </form>
     </main>
     <div class="checkout-button-panel">
-      <button class="checkout-button" @click="checkout()">結帳</button>
+      <button class="checkout-button" @click="checkout()" type="submit" form="newbpay">結帳</button>
     </div>
   </div>
 </template>
@@ -194,7 +205,7 @@
 </style>
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
 import CryptoJS from 'crypto-js'
 
 export default {
@@ -204,7 +215,8 @@ export default {
       ItemDesc:'UnitTest',
       LoginType: 0,
       TradeInfo:'',
-      TradeSha:''
+      TradeSha:'',
+      Amt:2760
     }
   },
   methods:{
@@ -229,16 +241,12 @@ export default {
       });
       const cipherText = encrypted.ciphertext.toString()
       console.log('TradeInfo:', cipherText)
+      document.getElementById('TradeInfo').value = cipherText
       let beforeTradeSha = 'HashKey=xfPcxoYSugve9JQWCHhvMMI0t7QZ2GcE&' + cipherText + '&HashIV=C1jp9ruxzNXY86qP'
       // console.log('before tradeSha', beforeTradeSha)
       const tradeSha = CryptoJS.SHA256(beforeTradeSha).toString().toUpperCase();
       console.log('TradeSha:', tradeSha)
-      // post request
-      axios.post('https://ccore.newebpay.com/MPG/mpg_gateway',{
-        MerchantID: 'MS136074798',
-        TradeInfo: cipherText,
-        TradeSha: tradeSha
-      })
+      document.getElementById('TradeSha').value = tradeSha
     }
   }
 }
