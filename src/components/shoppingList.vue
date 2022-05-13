@@ -41,6 +41,9 @@
         </div>
       </li>
     </ul>
+    <div class="no-goods" v-if="this.$store.state.shoppingListFiltered.length === 0">
+      <h1>購物車尚無商品</h1>
+    </div>
   </div>
 </template>
 

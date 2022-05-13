@@ -43,8 +43,6 @@ export default {
   },
   methods:{
     addCart(){
-      
-
       if(this.jujube.quantity ===0){
         return
       } else{
