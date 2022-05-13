@@ -4,7 +4,7 @@
       <font-awesome-icon icon="fa-solid fa-apple-whole" />
       <span> 蜜棗晨。結帳</span>
     </div>
-    <main>
+    <main v-if="Amt > 0">
       <div class="order">
         <div class="list-head-mobile">
             訂單詳情
@@ -13,50 +13,26 @@
             訂購商品
         </div>
         <ul class="order-list">
-          <li class="item-wrapper">
+          <li class="item-wrapper" v-for="item in this.$store.state.shoppingListFiltered" :key="item.id" >
             <div class="product-image">
-              <img src="https://i.imgur.com/gpfAb8E.jpg" alt="">
+              <img :src="item.image" alt="">
             </div>
             <div class="product-description">
               <div class="prodcut-name">
-                雪麗棗 4.5A
+                {{item.name}}
               </div>
               <div class="specification">
-                超大大(每顆平均4.5兩)
+                {{item.specification}}
               </div>
               <div class="price-wrapper">
                 <div class="unit-price">
-                  750
+                  {{item.price}}
                 </div>
                 <div class="quantity">
-                  x 2
+                  x {{item.quantity}}
                 </div>
                 <div class="gross-price" style="display:none;">
                   1500
-                </div>
-              </div>
-            </div>
-          </li>
-          <li class="item-wrapper">
-            <div class="product-image">
-              <img src="https://i.imgur.com/gpfAb8E.jpg" alt="">
-            </div>
-            <div class="product-description">
-              <div class="prodcut-name">
-                雪麗棗 4A
-              </div>
-              <div class="specification">
-                超大(每顆平均4.0-4.4兩)
-              </div>
-              <div class="price-wrapper">
-                <div class="unit-price">
-                  600
-                </div>
-                <div class="quantity">
-                  x 2
-                </div>
-                <div class="gross-price" style="display:none;">
-                  1200
                 </div>
               </div>
             </div>
@@ -75,27 +51,32 @@
         <input  id='Version' name='Version' value='2.0' hidden>
         <div class="address-wrapper">
           <label for="address">寄送地點：</label>
-          <input type="text" id="address" value="臺南市中西區青年路21號">
+          <input type="text" id="address" value="" placeholder="請輸入您的地址">
         </div>
         <div class="contact-wrapper">
           <label for="contact">聯絡電話：</label>
-          <input type="telephone" id="contact">
+          <input type="telephone" id="contact" placeholder="請輸入您的聯絡電話">
         </div>
         <div class="comment-wrapper">
           <label for="comment">留言：</label>
-          <textarea type="text" id="comment">
+          <textarea type="text" id="comment" placeholder="">
           </textarea>
         </div>
         <div class="amount-wrapper">
-          <span>訂單金額： 2700元</span>
-          <p>宅配費用： 0060元</p>
+          <span>訂單金額： {{this.$store.state.totalCost}}元</span>
+          <p>宅配費用： 60元</p>
           <span class="checkout-amount">總付款金額： {{Amt}}元</span>
         </div>
       </form>
     </main>
-    <div class="checkout-button-panel">
-      <button class="checkout-button" @click="checkout()" type="submit" form="newbpay">結帳</button>
+    <div class="checkout-button-panel" v-if="Amt > 0">
+      <button class="checkout-button" @click="checkout()" type="submit" form="newbpay" >結帳</button>
     </div>
+    <main class="no-goods" v-if="this.$store.state.shoppingListFiltered.length === 0">
+      <h1>訂單尚無商品</h1>
+      <router-link to="/jujubes">再去逛逛</router-link>
+    </main>
+    
   </div>
 </template>
 
@@ -167,7 +148,7 @@
     .amount-wrapper{
       display: flex;
       flex-direction: column;
-      text-align: right;
+      text-align: left;
       .checkout-amount{
         border-top: solid 1px $main-gray;
         padding-top: 5px;
@@ -216,11 +197,17 @@ export default {
       LoginType: 0,
       TradeInfo:'',
       TradeSha:'',
-      Amt:2760
+      Freight: 60,
+      TotalCost: 2700,
+      Amt: 0,
+      ClientBackURL: "https://lgtits.github.io/jujube/"
     }
   },
   methods:{
     checkout(){
+      if(this.Amt === 0) {
+        return
+      }
       let key = CryptoJS.enc.Utf8.parse('xfPcxoYSugve9JQWCHhvMMI0t7QZ2GcE')
       let iv = CryptoJS.enc.Utf8.parse('C1jp9ruxzNXY86qP')
       const trade_info_arr = new URLSearchParams({
@@ -231,6 +218,7 @@ export default {
         MerchantOrderNo: 'jc' + parseInt(new Date().getTime()/1000),
         Amt: this.Amt,
         ItemDesc: this.ItemDesc,
+        ClientBackURL: this.ClientBackURL
         // LoginType: 0
       });
       console.log(trade_info_arr.toString())
@@ -247,7 +235,15 @@ export default {
       const tradeSha = CryptoJS.SHA256(beforeTradeSha).toString().toUpperCase();
       console.log('TradeSha:', tradeSha)
       document.getElementById('TradeSha').value = tradeSha
+      localStorage.clear();
     }
+  },
+  created(){
+    this.$store.commit('getShoppingList')
+    this.TotalCost = 0
+    this.$store.commit('getTotalCost')
+    this.Amt = Number(this.Freight) + Number(this.$store.state.totalCost)
+    
   }
 }
 </script>

@@ -8,7 +8,7 @@
     </div>
     <div class="checkout-wrapper">
       <router-link to="/jujubes" class="return">← 繼續選購</router-link>
-      <button class="checkout" @click="checkout()">結帳 →</button>
+      <button class="checkout" @click="checkout()" v-if="this.$store.state.shoppingListFiltered.length !== 0">結帳 →</button>
     </div>
   </div>
 </template>
