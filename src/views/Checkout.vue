@@ -351,7 +351,7 @@ export default {
       if(this.Amt === 0 || !this.Address || !this.Contact || !this.Receiver) {
         return
       }
-      this.OrderComment = '地址: ' + this.Address + '/收件人: ' + this.Receiver + '/聯絡電話: ' + this.Contact + '/留言: ' + this.Comment
+      this.getItemDesc()
       let key = CryptoJS.enc.Utf8.parse('xfPcxoYSugve9JQWCHhvMMI0t7QZ2GcE')
       let iv = CryptoJS.enc.Utf8.parse('C1jp9ruxzNXY86qP')
       const trade_info_arr = new URLSearchParams({
@@ -386,13 +386,13 @@ export default {
       this.$store.state.shoppingListFiltered.forEach(item => {
         this.ItemDesc += item.name + '*' + item.quantity + '/'
       });
-      console.log(this.ItemDesc)
+      this.ItemDesc = this.ItemDesc +  '地址: ' + this.Address + '/收件人: ' + this.Receiver + '/聯絡電話: ' + this.Contact + '/留言: ' + this.Comment
     }
   },
   created(){
     this.$store.commit('getShoppingList')
     this.Amt = Number(this.Freight) + Number(this.$store.state.totalAmount)
-    this.getItemDesc()
+
   }
 }
 </script>
