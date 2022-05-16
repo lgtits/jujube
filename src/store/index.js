@@ -8,7 +8,7 @@ export default new Vuex.Store({
   state: {
     shoppingCartQuantity: '',
     shoppingListFiltered: [],
-    totalAmount:'',
+    totalAmount:0,
     totalCost:0,
     shoppingList: [
       {
@@ -73,16 +73,17 @@ export default new Vuex.Store({
           state.totalAmount = Number(state.totalAmount) + item.price * item.quantity
         }
       });
+      console.log('getShopping:', state.totalAmount)
     },
-    getTotalCost(state){
-      console.log(state.shoppingListFiltered)
-      state.shoppingListFiltered.forEach(item => {
-        console.log(item.quantity)
-        console.log(item.price)
-        state.totalCost = Number(state.totalCost) + Number(item.price) * Number(item.quantity)
-      }) 
-      console.log(state.totalCost)
-    }
+    // getTotalCost(state){
+    //   console.log(state.shoppingListFiltered)
+    //   state.shoppingListFiltered.forEach(item => {
+    //     console.log(item.quantity)
+    //     console.log(item.price)
+    //     state.totalCost = Number(state.totalCost) + Number(item.price) * Number(item.quantity)
+    //   }) 
+    //   console.log('totalCost:', state.totalCost)
+    // }
   },
   actions: {
   },

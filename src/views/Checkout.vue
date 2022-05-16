@@ -51,21 +51,27 @@
         <input  id='Version' name='Version' value='2.0' hidden>
         <div class="address-wrapper">
           <label for="address">寄送地點：</label>
-          <input type="text" id="address" value="" placeholder="請輸入您的地址">
+          <input type="text" id="address" value="" placeholder="請輸入您的地址" v-model="Address" required>
+        </div>
+        <div class="contact-wrapper">
+          <label for="name">收件人姓名：</label>
+          <input type="name" id="name" placeholder="請輸入收件人姓名" v-model="Receiver" required>
         </div>
         <div class="contact-wrapper">
           <label for="contact">聯絡電話：</label>
-          <input type="telephone" id="contact" placeholder="請輸入您的聯絡電話">
+          <input type="telephone" id="contact" placeholder="請輸入您的聯絡電話" v-model="Contact" required>
         </div>
         <div class="comment-wrapper">
           <label for="comment">留言：</label>
-          <textarea type="text" id="comment" placeholder="">
+          <textarea type="text" id="comment" placeholder="" v-model="Comment" >
           </textarea>
         </div>
         <div class="amount-wrapper">
-          <span>訂單金額： {{this.$store.state.totalCost}}元</span>
+          <span>訂單金額： {{this.$store.state.totalAmount}}元</span>
           <p>宅配費用： 60元</p>
-          <span class="checkout-amount">總付款金額： {{Amt}}元</span>
+          <span class="checkout-amount">總付款金額： 
+            <span class="amount">{{Amt}}</span>元
+          </span>
         </div>
       </form>
     </main>
@@ -127,6 +133,9 @@
             }
           }
           .product-description{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
             .price-wrapper{
               display: flex;
             }
@@ -152,6 +161,10 @@
       .checkout-amount{
         border-top: solid 1px $main-gray;
         padding-top: 5px;
+        .amount{
+          color: red;
+          font-weight: 800;
+        }
       }
     }
   }
@@ -193,21 +206,27 @@ export default {
   data(){
     return{
       MerchantOrderNo:'1485232229',
-      ItemDesc:'UnitTest',
+      ItemDesc:'',
       LoginType: 0,
       TradeInfo:'',
       TradeSha:'',
       Freight: 60,
-      TotalCost: 2700,
+      TotalCost: 0,
       Amt: 0,
+      OrderComment: this.Address + this.Contact,
+      Receiver:'',
+      Address:'',
+      Contact:'',
+      Comment: '',
       ClientBackURL: "https://lgtits.github.io/jujube/"
     }
   },
   methods:{
     checkout(){
-      if(this.Amt === 0) {
+      if(this.Amt === 0 || !this.Address || !this.Contact || !this.Receiver) {
         return
       }
+      this.OrderComment = '地址: ' + this.Address + '/收件人: ' + this.Receiver + '/聯絡電話: ' + this.Contact + '/留言: ' + this.Comment
       let key = CryptoJS.enc.Utf8.parse('xfPcxoYSugve9JQWCHhvMMI0t7QZ2GcE')
       let iv = CryptoJS.enc.Utf8.parse('C1jp9ruxzNXY86qP')
       const trade_info_arr = new URLSearchParams({
@@ -218,7 +237,8 @@ export default {
         MerchantOrderNo: 'jc' + parseInt(new Date().getTime()/1000),
         Amt: this.Amt,
         ItemDesc: this.ItemDesc,
-        ClientBackURL: this.ClientBackURL
+        ClientBackURL: this.ClientBackURL,
+        OrderComment: this.OrderComment
         // LoginType: 0
       });
       console.log(trade_info_arr.toString())
@@ -236,14 +256,18 @@ export default {
       console.log('TradeSha:', tradeSha)
       document.getElementById('TradeSha').value = tradeSha
       localStorage.clear();
+    },
+    getItemDesc(){
+      this.$store.state.shoppingListFiltered.forEach(item => {
+        this.ItemDesc += item.name + '*' + item.quantity + '/'
+      });
+      console.log(this.ItemDesc)
     }
   },
   created(){
     this.$store.commit('getShoppingList')
-    this.TotalCost = 0
-    this.$store.commit('getTotalCost')
-    this.Amt = Number(this.Freight) + Number(this.$store.state.totalCost)
-    
+    this.Amt = Number(this.Freight) + Number(this.$store.state.totalAmount)
+    this.getItemDesc()
   }
 }
 </script>
