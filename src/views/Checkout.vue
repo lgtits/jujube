@@ -3,21 +3,27 @@
     <div class="header">
       <font-awesome-icon icon="fa-solid fa-apple-whole" />
       <span> 蜜棗晨。結帳</span>
+      <span class="cancel-order">
+        <router-link to="/jujubes" class="return">取消</router-link>
+      </span>
     </div>
     <main v-if="Amt > 0">
       <div class="order">
         <div class="list-head-mobile">
             訂單詳情
         </div>
-        <div class="list-head-pc" style="display:none">
-            訂購商品
+        <div class="list-head-pc">
+          <span class="title name">訂單商品</span>
+          <span class="title price">單價</span>
+          <span class="title quantity">數量</span>
+          <span class="title total-price">總價</span>
         </div>
         <ul class="order-list">
           <li class="item-wrapper" v-for="item in this.$store.state.shoppingListFiltered" :key="item.id" >
             <div class="product-image">
               <img :src="item.image" alt="">
             </div>
-            <div class="product-description">
+            <div class="product-description-mobile">
               <div class="prodcut-name">
                 {{item.name}}
               </div>
@@ -31,8 +37,27 @@
                 <div class="quantity">
                   x {{item.quantity}}
                 </div>
-                <div class="gross-price" style="display:none;">
-                  1500
+              </div>
+            </div>
+            <div class="product-description-pc">
+              <div class="prodcut-name">
+                {{item.name}}
+              </div>
+              <div class="specification">
+                {{item.specification}}
+              </div>
+              <div class="sub-specification">
+                {{item.subSpecification}}
+              </div>
+              <div class="price-wrapper">
+                <div class="unit-price">
+                  {{item.price.toLocaleString('en-US')}}
+                </div>
+                <div class="quantity">
+                  {{item.quantity}}
+                </div>
+                <div class="gross-price">
+                  {{(item.price*item.quantity).toLocaleString('en-US')}}
                 </div>
               </div>
             </div>
@@ -49,17 +74,19 @@
         <input  id='TradeSha' name='TradeSha' value="TradeSha" hidden>
         <label for="" hidden>version</label>
         <input  id='Version' name='Version' value='2.0' hidden>
+        <div class="contact-info">
+          <div class="name-wrapper">
+            <label for="name">收件人姓名：</label>
+            <input type="name" id="name" placeholder="請輸入收件人姓名" v-model="Receiver" required>
+          </div>
+          <div class="contact-wrapper">
+            <label for="contact">聯絡電話：</label>
+            <input type="telephone" id="contact" placeholder="請輸入您的聯絡電話" v-model="Contact" required>
+          </div>
+        </div>
         <div class="address-wrapper">
           <label for="address">寄送地點：</label>
           <input type="text" id="address" value="" placeholder="請輸入您的地址" v-model="Address" required>
-        </div>
-        <div class="contact-wrapper">
-          <label for="name">收件人姓名：</label>
-          <input type="name" id="name" placeholder="請輸入收件人姓名" v-model="Receiver" required>
-        </div>
-        <div class="contact-wrapper">
-          <label for="contact">聯絡電話：</label>
-          <input type="telephone" id="contact" placeholder="請輸入您的聯絡電話" v-model="Contact" required>
         </div>
         <div class="comment-wrapper">
           <label for="comment">留言：</label>
@@ -67,10 +94,10 @@
           </textarea>
         </div>
         <div class="amount-wrapper">
-          <span>訂單金額： {{this.$store.state.totalAmount}}元</span>
+          <span>訂單金額： {{this.$store.state.totalAmount.toLocaleString('en-US')}}元</span>
           <p>宅配費用： 60元</p>
           <span class="checkout-amount">總付款金額： 
-            <span class="amount">{{Amt}}</span>元
+            <span class="amount">{{Amt.toLocaleString('en-US')}}</span>元
           </span>
         </div>
       </form>
@@ -97,19 +124,25 @@
     -webkit-box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.1);
     -moz-box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.1);
     box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.1);
+    position: relative;
+    .cancel-order{
+      position: absolute;
+      right: 10px;
+      font-size: 16px;
+      a{
+        color: $main-gray;
+      }
+    }
   }
   main{
     padding: 10px 20px;
-    label{
-      display: block;
-    }
-    input{
-      width: 100%;
-    }
     textarea{
       width: 100%;
     }
     .order{
+      .list-head-pc{
+        display: none;
+      }
       .list-head-mobile{
         width: 100%;
         text-align: center;
@@ -132,7 +165,10 @@
               object-fit:cover;
             }
           }
-          .product-description{
+          .product-description-pc{
+            display: none;
+          }
+          .product-description-mobile{
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -144,13 +180,28 @@
       }
     }
     .address-wrapper{
-      border-top: 1px solid $main-gray;
+      margin-bottom: 10px;
+      input{
+        width: 100%;
+      }
+    }
+    .contact-info{
       padding-top: 10px;
-      margin-bottom: 10px;
+      border-top: 1px solid $main-gray;
+      .name-wrapper{
+        margin-bottom: 10px;
+        input{
+          width: 100%;
+        }
+      }
+      .contact-wrapper{
+        margin-bottom: 10px;
+        input{
+          width: 100%;
+        }
+      }
     }
-    .contact-wrapper{
-      margin-bottom: 10px;
-    }
+
     .comment-wrapper{
       margin-bottom: 10px;
     }
@@ -195,6 +246,80 @@
 }
 
   @media screen and (min-width: 700px) {
+    .checkout{
+      main{
+        .order{
+          .list-head-mobile{
+            display: none;
+          }
+          .list-head-pc{
+            background-color: rgba(67, 109, 3, 0.116);
+            display: block;
+            display: grid;
+            grid-template-columns: 50% 15% 15% 20%;
+            .name{
+              font-size: 20px;
+              padding: 10px;
+            }
+            .price, .quantity, .total-price{
+              text-align: center;
+              padding: 15px;
+              color: gray;
+            }
+          }
+          .order-list{
+            .item-wrapper{
+              .product-description-mobile{
+                display: none;
+              }
+              .product-description-pc{
+                width: 100%;
+                display: grid;
+                grid-template-columns: 15% 15% 15% 55%;
+                align-content: center;
+                text-align: center;
+                .price-wrapper{
+                  display: grid;
+                  grid-template-columns: 30% 30% 40%;
+                }
+              }
+            }
+          }
+        }
+        .contact-info{
+          display: flex;
+          margin-bottom: 10px;
+          .name-wrapper{
+            width: 50%;
+            label{
+              display: block;
+            }
+            input{
+              width: 80%;
+            }
+          }
+          .contact-wrapper{
+            width: 50%;
+            label{
+              display: block;
+            }
+            input{
+              width: 100%;
+            }
+          }
+        }
+      }
+      .checkout-button-panel{
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+        .checkout-button{
+          width: 30%;
+        }
+      }
+    }
+
+
   }
 </style>
 
