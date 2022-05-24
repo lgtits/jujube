@@ -352,8 +352,9 @@ export default {
         return
       }
       this.getItemDesc()
-      let key = CryptoJS.enc.Utf8.parse('xfPcxoYSugve9JQWCHhvMMI0t7QZ2GcE')
-      let iv = CryptoJS.enc.Utf8.parse('C1jp9ruxzNXY86qP')
+   
+
+      // 生成URL字串
       const trade_info_arr = new URLSearchParams({
         MerchantID:  'MS136074798',
         RespondType: 'JSON',
@@ -364,21 +365,26 @@ export default {
         ItemDesc: this.ItemDesc,
         ClientBackURL: this.ClientBackURL,
         OrderComment: this.OrderComment
-        // LoginType: 0
       });
-      console.log(trade_info_arr.toString())
+      console.log(trade_info_arr.toString()) //MerchantID=MS135597852&RespondType=JSON&TimeStamp=1652927717&Version=2&MerchantOrderNo=S_1485232229&Amt=40&ItemDesc=UnitTest
+
+      let key = CryptoJS.enc.Utf8.parse('xfPcxoYSugve9JQWCHhvMMI0t7QZ2GcE')
+      let iv = CryptoJS.enc.Utf8.parse('C1jp9ruxzNXY86qP')
       let encrypted = CryptoJS.AES.encrypt(trade_info_arr.toString(), key, { 
         iv: iv,
         mode: CryptoJS.mode.CBC,
         padding: CryptoJS.pad.Pkcs7
       });
       const cipherText = encrypted.ciphertext.toString()
-      console.log('TradeInfo:', cipherText)
+      console.log('TradeInfo:', cipherText) //447567545fac4f29dbd76e7800cb88d419434d7ee2da71c6da8ac60e907f275f96d387ecd5ce18682f6a138b317d521ea92e7b20a6769adff52570d4d10a93c01ae8344df9fd01ded47793e22d8b73c1bf1689758d6a4cd23a18c166865e6e0ee979e11689efa1fc9a46ec4182f2bef942b00eee4f4d3e5c7c4620e147abfbe9
+
+
       document.getElementById('TradeInfo').value = cipherText
+      
       let beforeTradeSha = 'HashKey=xfPcxoYSugve9JQWCHhvMMI0t7QZ2GcE&' + cipherText + '&HashIV=C1jp9ruxzNXY86qP'
-      // console.log('before tradeSha', beforeTradeSha)
       const tradeSha = CryptoJS.SHA256(beforeTradeSha).toString().toUpperCase();
-      console.log('TradeSha:', tradeSha)
+      console.log('TradeSha:', tradeSha) // AC277C277CC20C62BBC8752912D15B65E37E70EBEA6DEA4DBAA0F68DCC6F4DFF
+
       document.getElementById('TradeSha').value = tradeSha
       localStorage.clear();
     },
