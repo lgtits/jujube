@@ -87,6 +87,7 @@
 </template>
 
 <script>
+// test
 import Header from "../components/header.vue";
 import ComputerHeader from "../components/computerHeader.vue";
 import Footer from "../components/footer.vue";
