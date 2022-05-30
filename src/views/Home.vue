@@ -2,22 +2,19 @@
   <div class="home">
     <Header />
     <ComputerHeader />
-
     <main>
       <div class="title">
-        <h2 class="my-3">ABOUT US</h2>
+        <h1 class="my-3">ABOUT US</h1>
         <h5 class="py-2">品牌故事</h5>
       </div>
-
       <div class="story-beginning">
         <p>
-          覓棗晨，<br />
+          覓棗晨<br />
           覓/蜜 &nbsp; 飽水灌溉，清脆<span>甜蜜</span><br />
           棗/找 &nbsp; <span>棗子</span>分級，品質第一<br />
           晨/陳 &nbsp; <span>清晨</span>採收，注入朝氣<br />
         </p>
       </div>
-
       <div class="contain">
         <div class="story-left-text">
           <p>
@@ -30,9 +27,12 @@
           </p>
         </div>
         <div class="story-image my-4">
-          <img class="picture" src="../assets/image/LINE_ALBUM_覓棗晨_220414_1.jpg" alt="" />
+          <img
+            class="picture"
+            src="../assets/image/LINE_ALBUM_覓棗晨_220414_1.jpg"
+            alt=""
+          />
         </div>
-
         <div class="story-carousel">
           <div
             id="carouselExampleInterval"
@@ -40,31 +40,30 @@
             data-ride="carousel"
           >
             <div class="carousel-inner">
-              <div class="carousel-item active" data-interval="10000">
+              <div class="carousel-item active" data-interval="2000">
                 <img
                   src="../assets/image/LINE_ALBUM_覓棗晨_220414_4.jpg"
-                  class="d-block w-100 picture-carousel"
+                  class="d-block  picture-carousel"
+                  alt="..."
+                />
+              </div>
+              <div class="carousel-item" data-interval="2000">
+                <img
+                  src="../assets/image/LINE_ALBUM_覓棗晨_220414_0.jpg"
+                  class="d-block picture-carousel"
                   alt="..."
                 />
               </div>
               <div class="carousel-item" data-interval="2000">
                 <img
                   src="../assets/image/LINE_ALBUM_覓棗晨_220414_7.jpg"
-                  class="d-block w-100 picture-carousel"
-                  alt="..."
-                />
-              </div>
-              <div class="carousel-item">
-                <img
-                  src="../assets/image/LINE_ALBUM_覓棗晨_220414_0.jpg"
-                  class="d-block w-100 picture-carousel"
+                  class="d-block  picture-carousel"
                   alt="..."
                 />
               </div>
             </div>
           </div>
         </div>
-
         <div class="story-right-text">
           <p>
             在這超過三十年的棗園裡，承載了陳家對栽種蜜棗的無數寶貴回憶。<br />
@@ -76,18 +75,15 @@
           </p>
         </div>
       </div>
-
       <div class="story-conclusion">
-        <p>想欲呷棗仔，就來找陳家！</p>
+        <h2>想欲呷棗仔，就來找陳家！</h2>
       </div>
     </main>
-
     <Footer />
   </div>
 </template>
 
 <script>
-// test
 import Header from "../components/header.vue";
 import ComputerHeader from "../components/computerHeader.vue";
 import Footer from "../components/footer.vue";
@@ -104,25 +100,23 @@ export default {
 
 <style lang="scss" scoped>
 main {
-  color: #484246;
-
+  color: $main-color;
+  font-size: 18px;
+  padding-top: 70px;
   .title {
     text-align: center;
-
     h5 {
       letter-spacing: 0.2rem;
       width: 8rem;
       margin: 0 auto;
-      border-top: 1px solid #484246;
-      border-bottom: 1px solid #484246;
+      border-top: 1px solid $main-color;
+      border-bottom: 1px solid $main-color;
     }
   }
-
   .story-beginning {
     text-align: center;
     margin: 1rem;
     line-height: 4rem;
-
     p {
       span {
         color: #b51636;
@@ -130,129 +124,104 @@ main {
       }
     }
   }
-
   .contain {
     margin: 0 auto;
     text-align: center;
     line-height: 4rem;
-
-    .story-left-text {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      margin: 2rem;
-    }
-
-    .story-right-text {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      margin: 2rem;
-    }
-
-    .story-image .picture {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 2%;
-      -webkit-box-shadow: 0px 2px 10px 0x rgba(0, 0, 0, 0.08);
-      -moz-box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.08);
-      box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.08);
-    }
-
-    .picture-carousel {
-      width: 30rem;
-      height: 40rem;
-      object-fit: cover;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      border-radius: 2%;
-    }
-  }
-
-  .story-conclusion {
-    padding-bottom: 2.5rem;
-  }
-
-  .contain {
     width: 80%;
-    height: 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto auto auto;
     grid-template-areas:
       "left left"
       "image image"
       "carousel carousel"
       "right right";
-  }
+    .story-left-text {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      grid-area: left;
+    }
+    .story-right-text {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 2rem;
+      grid-area: right;
+    }
+    .story-image {
+      grid-area: image;
+      height: 500px;
+      .picture {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 2%;
+        -webkit-box-shadow: 0px 2px 10px 0x rgba(0, 0, 0, 0.08);
+        -moz-box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.08);
+        box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.08);
+      }
+    }
+    .story-carousel {
+      grid-area: carousel;
+      .carousel{
+        .carousel-item{
+          width: 100%;
+          height: 500px;
+          .picture-carousel {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 2%;
+          }
+        }
 
-  .story-left-text {
-    grid-area: left;
+      }
+    }
   }
-
-  .story-right-text {
-    grid-area: right;
-  }
-
-  .story-image {
-    grid-area: image;
-  }
-
-  .story-carousel {
-    grid-area: carousel;
-  }
-
   .story-conclusion {
     text-align: center;
-    line-height: 3rem;
-    font-weight: bold;
-    font-size: 1.2rem;
-  }
-
-  @media screen and (min-width: 800px) {
-    .story-beginning {
-      line-height: 3.5rem;
-    }
-
-    .contain {
-      line-height: 3.5rem;
-      width: 80%;
-      height: 100%;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr 1fr 1fr 1fr;
-      grid-template-areas:
-        "left image"
-        "left image"
-        "carousel right"
-        "carousel right";
-    }
-
-    .story-carousel {
-      height: 40rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 2%;
-      -webkit-box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.08);
-      -moz-box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.08);
-      box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.08);
-    }
-
-    .story-image {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .story-conclusion {
-      padding-top: 2rem;
-      padding-bottom: 2rem;
-    }
+    font-weight: 900;
+    padding-bottom: 2.5rem;
   }
 }
+
+  @media screen and (min-width: 700px) {
+    main{
+      padding-top: 0;
+      .story-beginning {
+        line-height: 3.5rem;
+      }
+      .contain {
+        line-height: 3.5rem;
+        width: 80%;
+        height: 100%;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+        grid-template-areas:
+          "left image"
+          "left image"
+          "carousel right"
+          "carousel right";
+        gap: 0 20px;
+        .story-carousel {
+          height: 40rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 2%;
+        }
+        .story-image {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+      .story-conclusion {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+      }
+    }
+  }
 </style>

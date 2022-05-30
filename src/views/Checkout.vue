@@ -331,8 +331,8 @@ export default {
   data(){
     return{
       MerchantOrderNo:'1485232229',
-      ItemDesc:'',
       LoginType: 0,
+      ItemDesc:'',
       TradeInfo:'',
       TradeSha:'',
       Freight: 60,
@@ -351,9 +351,8 @@ export default {
       if(this.Amt === 0 || !this.Address || !this.Contact || !this.Receiver) {
         return
       }
-      this.OrderComment = '地址: ' + this.Address + '/收件人: ' + this.Receiver + '/聯絡電話: ' + this.Contact + '/留言: ' + this.Comment
-      let key = CryptoJS.enc.Utf8.parse('xfPcxoYSugve9JQWCHhvMMI0t7QZ2GcE')
-      let iv = CryptoJS.enc.Utf8.parse('C1jp9ruxzNXY86qP')
+      this.getItemDesc()
+   
       const trade_info_arr = new URLSearchParams({
         MerchantID:  'MS136074798',
         RespondType: 'JSON',
@@ -364,21 +363,20 @@ export default {
         ItemDesc: this.ItemDesc,
         ClientBackURL: this.ClientBackURL,
         OrderComment: this.OrderComment
-        // LoginType: 0
       });
-      console.log(trade_info_arr.toString())
+
+      let key = CryptoJS.enc.Utf8.parse('xfPcxoYSugve9JQWCHhvMMI0t7QZ2GcE')
+      let iv = CryptoJS.enc.Utf8.parse('C1jp9ruxzNXY86qP')
       let encrypted = CryptoJS.AES.encrypt(trade_info_arr.toString(), key, { 
         iv: iv,
         mode: CryptoJS.mode.CBC,
         padding: CryptoJS.pad.Pkcs7
       });
       const cipherText = encrypted.ciphertext.toString()
-      console.log('TradeInfo:', cipherText)
       document.getElementById('TradeInfo').value = cipherText
+      
       let beforeTradeSha = 'HashKey=xfPcxoYSugve9JQWCHhvMMI0t7QZ2GcE&' + cipherText + '&HashIV=C1jp9ruxzNXY86qP'
-      // console.log('before tradeSha', beforeTradeSha)
       const tradeSha = CryptoJS.SHA256(beforeTradeSha).toString().toUpperCase();
-      console.log('TradeSha:', tradeSha)
       document.getElementById('TradeSha').value = tradeSha
       localStorage.clear();
     },
@@ -386,13 +384,13 @@ export default {
       this.$store.state.shoppingListFiltered.forEach(item => {
         this.ItemDesc += item.name + '*' + item.quantity + '/'
       });
-      console.log(this.ItemDesc)
+      this.ItemDesc = this.ItemDesc +  '地址: ' + this.Address + '/收件人: ' + this.Receiver + '/聯絡電話: ' + this.Contact + '/留言: ' + this.Comment
     }
   },
   created(){
     this.$store.commit('getShoppingList')
     this.Amt = Number(this.Freight) + Number(this.$store.state.totalAmount)
-    this.getItemDesc()
+
   }
 }
 </script>
