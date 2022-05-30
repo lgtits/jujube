@@ -331,8 +331,8 @@ export default {
   data(){
     return{
       MerchantOrderNo:'1485232229',
-      ItemDesc:'',
       LoginType: 0,
+      ItemDesc:'',
       TradeInfo:'',
       TradeSha:'',
       Freight: 60,
