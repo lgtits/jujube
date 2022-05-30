@@ -21,7 +21,7 @@
     </div>
     <div class="control-panel">
       <button class="quantity-control" @click="addQuantity">+</button>
-        <input type="number" min="0" v-model="jujube.quantity" class="quantity">
+      <input type="number" min="0" v-model="jujube.quantity" class="quantity">
       <button class="quantity-control" @click="minusQuantity">-</button>
       <button class="add-cart" @click="addCart()">加入購物車</button>
     </div>
